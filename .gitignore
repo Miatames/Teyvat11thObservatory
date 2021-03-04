@@ -1,2 +1,4 @@
 /.idea/
+/resources/db.properties
 
+/build/
