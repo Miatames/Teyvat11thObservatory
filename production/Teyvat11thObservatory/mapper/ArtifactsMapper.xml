@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.ArtifactsDao">
+
+    <resultMap id="ArtifactsMapper" type="com.genshintool.pojo.ArtifactsPojo">
+        <id property="sumArti" column="sumArti"></id>
+        <result property="flower" column="flower"></result>
+        <result property="plume" column="plume"></result>
+        <result property="sands" column="sands"></result>
+        <result property="goblet" column="goblet"></result>
+        <result property="circlet" column="circlet"></result>
+        <result property="timeArti" column="timeArti"></result>
+    </resultMap>
+
+    <select id="doArtifactsSubmitDao" resultType="artifactspojo">
+        insert into ARTIALL(SUMARTI,FLOWER,PLUME,SANDS,GOBLET,CIRCLET,TIMEARTI)
+        values(#{sumArti},#{flower},#{plume},#{sands},#{goblet},#{circlet},#{timeArti})
+    </select>
+
+</mapper>

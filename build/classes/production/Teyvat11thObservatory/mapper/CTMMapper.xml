@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.CTMDao">
+
+    <resultMap id="CTMMapper" type="com.genshintool.pojo.CTMPojo">
+        <id property="sumCTM" column="sumCTM"></id>
+        <result property="ctmL" column="ctmL"></result>
+        <result property="ctmA" column="ctmA"></result>
+        <result property="ctmB" column="ctmB"></result>
+        <result property="ctmC" column="ctmC"></result>
+        <result property="timeCTM" column="timeCTM"></result>
+    </resultMap>
+
+    <select id="doCTMSubmitDao" resultType="ctmpojo">
+        insert into CTM(SUMCTM,CTML,CTMA,CTMB,CTMC,TIMECTM)
+        values(#{sumCTM},#{ctmL},#{ctmA},#{ctmB},#{ctmC},#{timeCTM})
+    </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.ExpDao">
+
+    <resultMap id="ExpMapper" type="com.genshintool.pojo.ExpPojo">
+        <id property="sumBOR" column="sumBOR"></id>
+        <result property="expA" column="expA"></result>
+        <result property="expB" column="expB"></result>
+        <result property="expC" column="expC"></result>
+        <result property="worldL" column="worldL"></result>
+        <result property="timeBOR" column="timeBOR"></result>
+    </resultMap>
+
+    <select id="doExpSubmitDao" resultType="exppojo">
+        insert into BOR(SUMBOR,EXPA,EXPB,EXPC,BOTL,TIMEBOR)
+        values(#{sumBOR},#{expA},#{expB},#{expC},#{worldL},#{timeBOR})
+    </select>
+
+</mapper>

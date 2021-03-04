@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.WAMDao">
+
+    <resultMap id="WAMMapper" type="com.genshintool.pojo.WAMPojo">
+        <id property="sumWAM" column="sumWAM"></id>
+        <result property="wamL" column="wamL"></result>
+        <result property="wamA" column="wamA"></result>
+        <result property="wamB" column="wamB"></result>
+        <result property="wamC" column="wamC"></result>
+        <result property="wamD" column="wamD"></result>
+        <result property="timeWAM" column="timeWAM"></result>
+    </resultMap>
+
+    <select id="doWAMSubmitDao" resultType="wampojo">
+        insert into WAM(SUMWAM,WAML,WAMA,WAMB,WAMC,WAMD,TIMEWAM)
+        values(#{sumWAM},#{wamL},#{wamA},#{wamB},#{wamC},#{wamD},#{timeWAM})
+    </select>
+
+</mapper>

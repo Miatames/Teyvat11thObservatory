@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <title>提瓦特第十一情报局（暂定）</title>
+    <link rel="icon" href="images/logomini.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style type="text/css">
+        body{
+            background-color: #FFFFFB;
+        }
+        .tab-content{
+            padding-top: 10px;
+        }
+        .nav-pills .nav-link.active,.nav-pills .show>.nav-link{
+            color: #FFFFFB;
+            background-color: #BDC0BA;
+        }
+        .card-body{
+            padding: 10px;
+        }
+        .ct-tab-img{
+            height: 40px;
+            width: auto;
+        }
+        th{
+            text-align: center;
+        }
+    </style>
+    <script src="js/index.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm bg-light">
+        <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="images/logomini.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            提瓦特第十一情报局（暂定）
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-tab" aria-controls="main-tab" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-tab">
+            <ul class="navbar-nav mr-auto" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" href="#home-div" aria-controls="home-div" aria-selected="true">主页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="statistic-tab" data-toggle="tab" role="tab" href="#statistic-div" aria-controls="statistic-div" aria-selected="false">数据统计</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="submit-tab" data-toggle="tab" role="tab" href="#submit-div" aria-controls="submit-div" aria-selected="false">掉落提交</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="calculate-tab" data-toggle="tab" role="tab" href="#calculate-div" aria-controls="calculate-div" aria-selected="false">材料计算</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container">
+    <div class="tab-content" id="main-tab-content">
+        <div class="tab-pane fade show active" id="home-div" role="tabpanel" aria-labelledby="home-tab">
+            <div class="jumbotron">
+                <h3 class="display-3">开发中</h3>
+                <hr>
+                <p id="hitokoto_text">:D 获取中...</p><p>---hitokoto</p>
+                <hr class="my-4">
+                <h5>更新日志：</h5>
+                <pre>
+2021/3/3            掉落提交完成：世界boss
+                    掉落提交完成：圣遗物（主词条）
+
+2021/3/2            出胡桃了，好耶
+
+2021/3/1            掉落提交界面：圣遗物
+                    网站更名为：提瓦特第十一情报局（暂定）
+
+2021/2/28           提交数据时自动添加提交时间
+                    掉落提交界面：世界boss
+                    首页一言接口：https://hitokoto.cn/
+
+2021/2/27           点击提交按钮后禁用按钮
+                    提交提示的modal
+                    自动刷新外部js
+                    掉落提交功能完成：武器突破材料
+                    提交材料输入框 获取焦点时自动全选
+
+2021/2/26           掉落提交功能完成：角色经验书
+
+2021/2/25           掉落提交功能完成：角色天赋材料
+
+
+
+                </pre>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="testbuttom">测试按钮</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="statistic-div" role="tabpanel" aria-labelledby="statistic-tab">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <ul class="nav flex-column nav-pills" id="statistic-tab-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-dark" id="statistic-tab-artifacts" data-toggle="tab"
+                               href="#statistic-div-artifacts" role="tab" aria-controls="statistic-div-artifacts" aria-selected="true">
+                                圣遗物
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="statistic-tab-exp" data-toggle="tab"
+                               href="#statistic-div-exp" role="tab" aria-controls="statistic-div-exp" aria-selected="false">
+                                经验书
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="statistic-tab-boss" data-toggle="tab"
+                               href="#statistic-div-boss" role="tab" aria-controls="statistic-div-boss" aria-selected="false">
+                                世界boss
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="statistic-tab-ctm" data-toggle="tab"
+                               href="#statistic-div-ctm" role="tab" aria-controls="statistic-div-ctm" aria-selected="false">
+                                角色天赋素材
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="statistic-tab-wam" data-toggle="tab"
+                               href="#statistic-div-wam" role="tab" aria-controls="statistic-div-wam" aria-selected="false">
+                                武器突破素材
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="tab-content" id="statistic-tab-content">
+                        <div class="tab-pane fade show active" id="statistic-div-artifacts" role="tabpanel" aria-labelledby="statistic-tab-artifacts">
+                            artifacts
+                        </div>
+                        <div class="tab-pane fade" id="statistic-div-exp" role="tabpanel" aria-labelledby="statistic-tab-exp">
+                            exp
+                        </div>
+                        <div class="tab-pane fade" id="statistic-div-boss" role="tabpanel" aria-labelledby="statistic-tab-boss">
+                            boss
+                        </div>
+                        <div class="tab-pane fade" id="statistic-div-ctm" role="tabpanel" aria-labelledby="statistic-tab-ctm">
+                            ctm
+                        </div>
+                        <div class="tab-pane fade" id="statistic-div-wam" role="tabpanel" aria-labelledby="statistic-tab-wam">
+                            wam
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="submit-div" role="tabpanel" aria-labelledby="submit-tab">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <ul class="nav flex-column nav-pills" id="submit-tab-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-dark" id="submit-tab-artifacts" data-toggle="tab"
+                               href="#submit-div-artifacts" role="tab" aria-controls="submit-div-artifacts" aria-selected="true">
+                                圣遗物
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="submit-tab-exp" data-toggle="tab"
+                               href="#submit-div-exp" role="tab" aria-controls="submit-div-exp" aria-selected="false">
+                                经验书
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="submit-tab-boss" data-toggle="tab"
+                               href="#submit-div-boss" role="tab" aria-controls="submit-div-boss" aria-selected="false">
+                                世界boss
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="submit-tab-ctm" data-toggle="tab"
+                               href="#submit-div-ctm" role="tab" aria-controls="submit-div-ctm" aria-selected="false">
+                                角色天赋素材
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="submit-tab-wam" data-toggle="tab"
+                               href="#submit-div-wam" role="tab" aria-controls="submit-div-wam" aria-selected="false">
+                                武器突破素材
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-9 border-left border-right">
+                    <div class="tab-content" id="submit-tab-content">
+                        <div class="tab-pane fade active show" id="submit-div-artifacts" role="tabpanel" aria-labelledby="submit-tab-artifacts">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-artifacts-sum" class="col-form-label">次数</label>
+                                        <input type="number" class="form-control" id="submit-artifacts-sum" placeholder="" onfocus="this.select()" value="1" min="1" max="2">
+                                        <small class="form-text text-muted">
+                                            *20体力记为1次，浓缩树脂记为2次
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-artifacts-level" class="col-form-label">秘境等级</label>
+                                        <input type="number" class="form-control" id="submit-artifacts-level" placeholder="" onfocus="this.select()" value="3" readonly>
+                                        <small class="form-text text-muted">
+                                            *只统计最高等级秘境的掉落
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="card">
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-borderless">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" class="align-middle">部位</th>
+                                                            <th scope="col">
+                                                                <img src="./images/arti/folwer.png" class="mx-auto d-block ct-tab-img">
+                                                            </th>
+                                                            <th scope="col">
+                                                                <img src="./images/arti/plume.png" class="mx-auto d-block ct-tab-img">
+                                                            </th>
+                                                            <th scope="col">
+                                                                <img src="./images/arti/sands.png" class="mx-auto d-block ct-tab-img">
+                                                            </th>
+                                                            <th scope="col">
+                                                                <img src="./images/arti/goblet.png" class="mx-auto d-block ct-tab-img">
+                                                            </th>
+                                                            <th scope="col">
+                                                                <img src="./images/arti/circlet.png" class="mx-auto d-block ct-tab-img">
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col" class="align-middle">数量</th>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-flower" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-plume" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-circlet" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card d-none" id="submit-artifacts-sands-card" style="margin-top: 10px;">
+                                            <div class="card-header">
+                                                时之沙
+                                            </div>
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-borderless text-nowrap">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">元素精通</th>
+                                                        <th scope="col">元素充能效率</th>
+                                                        <th scope="col">百分比攻击</th>
+                                                        <th scope="col">百分比防御</th>
+                                                        <th scope="col">百分比生命</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <thead>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands-em" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands-er" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands-atk" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands-def" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-sands-hp" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card d-none" id="submit-artifacts-goblet-card" style="margin-top: 10px;">
+                                            <div class="card-header">
+                                                空之杯
+                                            </div>
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-borderless text-nowrap">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">元素伤害加成</th>
+                                                        <th scope="col">物理伤害加成</th>
+                                                        <th scope="col">百分比攻击</th>
+                                                        <th scope="col">百分比防御</th>
+                                                        <th scope="col">百分比生命</th>
+                                                        <th scope="col">元素精通</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <thead>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-elem" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-phys" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-atk" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-def" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-hp" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </th>
+                                                        <td>
+                                                            <input type="number" class="form-control" id="submit-artifacts-goblet-em" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                        </td>
+
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card d-none" id="submit-artifacts-circlet-card" style="margin-top: 10px;">
+                                            <div class="card-header">
+                                                理之冠
+                                            </div>
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-borderless text-nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">暴击率</th>
+                                                            <th scope="col">暴击伤害</th>
+                                                            <th scope="col">百分比攻击</th>
+                                                            <th scope="col">百分比防御</th>
+                                                            <th scope="col">百分比生命</th>
+                                                            <th scope="col">治疗加成</th>
+                                                            <th scope="col">元素精通</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-crate" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-cdmg" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-atk" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-def" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-hp" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-heal" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" id="submit-artifacts-circlet-em" placeholder="" onfocus="this.select()" value="" min="0" max="4">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submit-artifacts-upload">提交</button>
+                            </form>
+                            <div><p></p></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="submit-div-exp" role="tabpanel" aria-labelledby="submit-tab-exp">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-exp-sum" class="col-form-label">次数</label>
+                                        <input type="number" class="form-control" id="submit-exp-sum" placeholder="" onfocus="this.select()" value="1" min="1" max="2">
+                                        <small class="form-text text-muted">
+                                            *20体力记为1次，浓缩树脂记为2次，20体力收双倍奖励记2次
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-exp-worldlevel" class="col-form-label">世界等级</label>
+                                        <input type="number" class="form-control" id="submit-exp-worldlevel" placeholder="" onfocus="this.select()" value="8" min="1" max="8" readonly>
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/exp/hero.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-exp-hero" placeholder="" onfocus="this.select()" value="" min="0" max="15">
+                                                <p class="card-text text-center">大英雄的经验</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/exp/adventurer.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-exp-adventurer" placeholder="" onfocus="this.select()" value="" min="0" max="15">
+                                                <p class="card-text text-center">冒险家的经验</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/exp/wanderer.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-exp-wanderer" placeholder="" onfocus="this.select()" value="" min="0" max="15" readonly>
+                                                <p class="card-text text-center">流浪者的经验</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submit-exp-upload">提交</button>
+                            </form>
+                            <div><p></p></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="submit-div-boss" role="tabpanel" aria-labelledby="submit-tab-boss">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-boss-sum" class="col-form-label">次数</label>
+                                        <input type="number" class="form-control" id="submit-boss-sum" placeholder="" onfocus="this.select()" value="1" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-boss-worldlevel" class="col-form-label">世界等级</label>
+                                        <input type="number" class="form-control" id="submit-boss-worldlevel" placeholder="" onfocus="this.select()" value="8" min="1" max="8">
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/boss1/ShivadaJade1.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-boss-a" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">五星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/boss1/ShivadaJade2.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-boss-b" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">四星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/boss1/ShivadaJade3.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-boss-c" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">三星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/boss1/ShivadaJade4.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-boss-d" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">二星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/boss2/HoarfrostCore.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-boss-u" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">核心类材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submit-boss-continue">继续输入圣遗物</button>
+                                <button type="button" class="btn btn-primary" id="submit-boss-upload">提交</button>
+                            </form>
+                            <div><p></p></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="submit-div-ctm" role="tabpanel" aria-labelledby="submit-tab-ctm">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-ctm-sum" class="col-form-label">次数</label>
+                                        <input type="number" class="form-control" id="submit-ctm-sum" placeholder="" onfocus="this.select()" value="1" min="1" max="2">
+                                        <small class="form-text text-muted">
+                                            *20体力记为1次，浓缩树脂记为2次
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-ctm-level" class="col-form-label">秘境等级</label>
+                                        <input type="number" class="form-control" id="submit-ctm-level" placeholder="" onfocus="this.select()" value="4" min="1" max="4">
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/ctm/Deligence1.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-ctm-a" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">四星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/ctm/Deligence2.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-ctm-b" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">三星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/ctm/Deligence3.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-ctm-c" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">二星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submit-ctm-upload">提交</button>
+                            </form>
+                            <div><p></p></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="submit-div-wam" role="tabpanel" aria-labelledby="submit-tab-wam">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-wam-sum" class="col-form-label">次数</label>
+                                        <input type="number" class="form-control" id="submit-wam-sum" placeholder="" onfocus="this.select()" value="1" min="1" max="2">
+                                        <small class="form-text text-muted">
+                                            *20体力记为1次，浓缩树脂记为2次
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="submit-wam-level" class="col-form-label">秘境等级</label>
+                                        <input type="number" class="form-control" id="submit-wam-level" placeholder="" onfocus="this.select()" value="4" min="1" max="4">
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/wam/Aerosiderite1.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-wam-a" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">五星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/wam/Aerosiderite2.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-wam-b" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">四星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/wam/Aerosiderite3.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-wam-c" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">三星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-3 col-sm-3 col-md-3" style="padding: 0.7rem; max-width: 150px;">
+                                        <div class="card">
+                                            <img class="card-img-top" src="./images/wam/Aerosiderite4.png" alt="" style="width:100%;">
+                                            <div class="card-body">
+                                                <input type="number" class="form-control" id="submit-wam-d" placeholder="" onfocus="this.select()" value="" min="0" max="10">
+                                                <p class="card-text text-center">二星材料</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="submit-wam-upload">提交</button>
+                            </form>
+                            <div><p></p></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="calculate-div" role="tabpanel" aria-labelledby="calculate-tab">
+            calculate
+        </div>
+
+        <div class="modal fade" id="submit-success-modal" tabindex="-1" role="dialog" aria-labelledby="submit-success-modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-success text-white">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <h5 class="modal-title">提交成功</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="submit-success-modal-2" tabindex="-1" role="dialog" aria-labelledby="submit-success-modal-2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-success text-white">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <h5 class="modal-title">提交成功,请继续提交圣遗物</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="submit-fail-modal" tabindex="-1" role="dialog" aria-labelledby="submit-fail-modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-warning">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <h5 class="modal-title">提交失败</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // 使用随机数使网页缓存的外部js失效
+        document.write('<script type="text/javascript" src="./js/index.js?v='+Math.random()+'"><\/script>');
+    </script>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: 'https://v1.hitokoto.cn',
+            dataType: 'json',
+            jsonp: 'callback',
+            jsonpCallback: 'hitokoto',
+            success (data) {
+                $('#hitokoto_text').text(data.hitokoto)
+            },
+            error (jqXHR, textStatus, errorThrown) {
+                // 错误信息处理
+                console.error(textStatus, errorThrown)
+            }
+        })
+    </script>
+</body>
+</html>
