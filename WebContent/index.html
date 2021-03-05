@@ -64,8 +64,6 @@
         <div class="tab-pane fade show active" id="home-div" role="tabpanel" aria-labelledby="home-tab">
             <div class="jumbotron">
                 <h3 class="display-3">开发中</h3>
-                <hr>
-                <p id="hitokoto_text">:D 获取中...</p><p>---hitokoto</p>
                 <hr class="my-4">
                 <h5>更新日志：</h5>
                 <p><a href="https://github.com/Miatames/Teyvat11thObservatory">详见Github项目地址</a></p>
@@ -649,22 +647,6 @@
     <script type="text/javascript">
         // 使用随机数使网页缓存的外部js失效
         document.write('<script type="text/javascript" src="./js/index.js?v='+Math.random()+'"><\/script>');
-    </script>
-    <script>
-        $.ajax({
-            type: 'GET',
-            url: 'https://v1.hitokoto.cn',
-            dataType: 'json',
-            jsonp: 'callback',
-            jsonpCallback: 'hitokoto',
-            success (data) {
-                $('#hitokoto_text').text(data.hitokoto)
-            },
-            error (jqXHR, textStatus, errorThrown) {
-                // 错误信息处理
-                console.error(textStatus, errorThrown)
-            }
-        })
     </script>
 </body>
 </html>
