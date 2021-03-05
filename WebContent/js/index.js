@@ -1,10 +1,10 @@
 function getTime() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var Hours = date.getHours();
-    var Minutes = date.getMinutes();
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let Hours = date.getHours();
+    let Minutes = date.getMinutes();
     if (month < 10) {
         month = "0" + month;
     }
@@ -17,7 +17,7 @@ function getTime() {
     if (Minutes < 10) {
         Minutes = "0" + Minutes;
     }
-    var s_createtime = year+month+day+Hours+Minutes;
+    let s_createtime = year + month + day + Hours + Minutes;
     return s_createtime;
 }
 
@@ -72,12 +72,12 @@ $(document).ready(function(){
 });
 $(document).on("click", "#submit-ctm-upload", function () {
     $("#submit-ctm-upload").attr("disabled",true);
-    sumCTM=$("#submit-ctm-sum").val();
-    ctmL=$("#submit-ctm-level").val();
-    ctmA=$("#submit-ctm-a").val();
-    ctmB=$("#submit-ctm-b").val();
-    ctmC=$("#submit-ctm-c").val();
-    timeCTM=getTime();
+    let sumCTM = $("#submit-ctm-sum").val();
+    let ctmL = $("#submit-ctm-level").val();
+    let ctmA = $("#submit-ctm-a").val();
+    let ctmB = $("#submit-ctm-b").val();
+    let ctmC = $("#submit-ctm-c").val();
+    let timeCTM = getTime();
     if (!ctmA){
         ctmA=0;
     }
@@ -116,12 +116,12 @@ $(document).on("click", "#submit-ctm-upload", function () {
 })
 $(document).on("click", "#submit-exp-upload", function () {
     $("#submit-exp-upload").attr("disabled",true);
-    sumBOR=$("#submit-exp-sum").val();
-    worldL=$("#submit-exp-worldlevel").val();
-    expA=$("#submit-exp-hero").val();
-    expB=$("#submit-exp-adventurer").val();
-    expC=$("#submit-exp-wanderer").val();
-    timeBOR=getTime();
+    let sumBOR = $("#submit-exp-sum").val();
+    let worldL = $("#submit-exp-worldlevel").val();
+    let expA = $("#submit-exp-hero").val();
+    let expB = $("#submit-exp-adventurer").val();
+    let expC = $("#submit-exp-wanderer").val();
+    let timeBOR = getTime();
     if (!expA){
         expA=0;
     }
@@ -160,13 +160,13 @@ $(document).on("click", "#submit-exp-upload", function () {
 })
 $(document).on("click", "#submit-wam-upload", function () {
     $("#submit-wam-upload").attr("disabled",true);
-    sumWAM=$("#submit-wam-sum").val();
-    wamL=$("#submit-wam-level").val();
-    wamA=$("#submit-wam-a").val();
-    wamB=$("#submit-wam-b").val();
-    wamC=$("#submit-wam-c").val();
-    wamD=$("#submit-wam-d").val();
-    timeWAM=getTime();
+    let sumWAM = $("#submit-wam-sum").val();
+    let wamL = $("#submit-wam-level").val();
+    let wamA = $("#submit-wam-a").val();
+    let wamB = $("#submit-wam-b").val();
+    let wamC = $("#submit-wam-c").val();
+    let wamD = $("#submit-wam-d").val();
+    let timeWAM = getTime();
     if (!wamA){
         wamA=0;
     }
@@ -211,14 +211,14 @@ $(document).on("click", "#submit-wam-upload", function () {
 
 $(document).on("click", "#submit-boss-upload", function () {
     $("#submit-boss-upload").attr("disabled",true);
-    sumCAM=$("#submit-boss-sum").val();
-    camL=$("#submit-boss-worldlevel").val();
-    camU=$("#submit-boss-u").val();
-    camA=$("#submit-boss-a").val();
-    camB=$("#submit-boss-b").val();
-    camC=$("#submit-boss-c").val();
-    camD=$("#submit-boss-d").val();
-    timeCAM=getTime();
+    let sumCAM = $("#submit-boss-sum").val();
+    let camL = $("#submit-boss-worldlevel").val();
+    let camU = $("#submit-boss-u").val();
+    let camA = $("#submit-boss-a").val();
+    let camB = $("#submit-boss-b").val();
+    let camC = $("#submit-boss-c").val();
+    let camD = $("#submit-boss-d").val();
+    let timeCAM = getTime();
 
     if (!camA){
         camA=0;
@@ -269,14 +269,14 @@ $(document).on("click", "#submit-boss-upload", function () {
 
 $(document).on("click", "#submit-boss-continue", function () {
     $("#submit-boss-upload").attr("disabled",true);
-    sumCAM=$("#submit-boss-sum").val();
-    camL=$("#submit-boss-worldlevel").val();
-    camU=$("#submit-boss-u").val();
-    camA=$("#submit-boss-a").val();
-    camB=$("#submit-boss-b").val();
-    camC=$("#submit-boss-c").val();
-    camD=$("#submit-boss-d").val();
-    timeCAM=getTime();
+    let sumCAM = $("#submit-boss-sum").val();
+    let camL = $("#submit-boss-worldlevel").val();
+    let camU = $("#submit-boss-u").val();
+    let camA = $("#submit-boss-a").val();
+    let camB = $("#submit-boss-b").val();
+    let camC = $("#submit-boss-c").val();
+    let camD = $("#submit-boss-d").val();
+    let timeCAM = getTime();
 
     if (!camA){
         camA=0;
@@ -332,59 +332,95 @@ $(document).on("click", "#submit-boss-continue", function () {
 
 $(document).on("click", "#submit-artifacts-upload", function () {
     $("#submit-artifacts-continue").attr("disabled",true);
-    sumArti=$("#submit-artifacts-sum").val();
-    sumFlower=$("#submit-artifacts-flower").val();
-    sumPlume=$("#submit-artifacts-plume").val();
-    sumSands=$("#submit-artifacts-sands").val();
-    sumGoblet=$("#submit-artifacts-goblet").val();
-    sumCirclet=$("#submit-artifacts-circlet").val();
-    timeArti=getTime();
-    if (!sumArti){
-        sumArti=0;
-    }
-    if (!sumFlower){
-        sumFlower=0;
-    }
-    if (!sumPlume){
-        sumPlume=0;
-    }
-    if (!sumSands){
-        sumSands=0;
-    }
-    if (!sumGoblet){
-        sumGoblet=0;
-    }
-    if (!sumCirclet){
-        sumCirclet=0;
+    let sumArti = $("#submit-artifacts-sum").val();
+    let sumFlower = $("#submit-artifacts-flower").val();
+    let sumPlume = $("#submit-artifacts-plume").val();
+    let sumSands = $("#submit-artifacts-sands").val();
+    let sumGoblet = $("#submit-artifacts-goblet").val();
+    let sumCirclet = $("#submit-artifacts-circlet").val();
+
+    let emSands = $("#submit-artifacts-sands-em").val();
+    let erSands = $("#submit-artifacts-sands-er").val();
+    let atkSands = $("#submit-artifacts-sands-atk").val();
+    let defSands = $("#submit-artifacts-sands-def").val();
+    let hpSands = $("#submit-artifacts-sands-hp").val();
+    let sumSandsB = emSands+erSands+atkSands+defSands+hpSands;
+
+
+    let timeArti = getTime();
+    if (!sumArti){      sumArti=0;      }
+    if (!sumFlower){    sumFlower=0;    }
+    if (!sumPlume){     sumPlume=0;     }
+    if (!sumSands){     sumSands=0;     }
+    if (!sumGoblet){    sumGoblet=0;    }
+    if (!sumCirclet){   sumCirclet=0;   }
+
+    if (!emSands){      emSands=0;      }
+    if (!erSands){      erSands=0;      }
+    if (!atkSands){     atkSands=0;     }
+    if (!defSands){     defSands=0;     }
+    if (!hpSands){      hpSands=0;      }
+
+
+    if (sumSandsB!=sumSands){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled",false);
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "artifactsSubmit",
+            data: {
+                "sumArti":sumArti,
+                "flower":sumFlower,
+                "plume":sumPlume,
+                "sands":sumSands,
+                "goblet":sumGoblet,
+                "circlet":sumCirclet,
+                "timeArti":timeArti
+            },
+            timeout: 5000,
+            success: function (msg) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "sandsSubmit",
+                    data: {
+                        "emSands":emSands,
+                        "erSands":erSands,
+                        "atkSands":atkSands,
+                        "defSands":defSands,
+                        "hpSands":hpSands,
+                        "timeSands":timeArti
+                    },
+                    timeout: 5000,
+                    success: function (msg) {
+                        $("#submit-success-modal").modal("show");
+                        $("#submit-artifacts-sum").val("1");
+                        $("#submit-artifacts-flower").val("");
+                        $("#submit-artifacts-plume").val("");
+                        $("#submit-artifacts-sands").val("");
+                        $("#submit-artifacts-goblet").val("");
+                        $("#submit-artifacts-circlet").val("");
+
+                        $("#submit-artifacts-sands-em").val("");
+                        $("#submit-artifacts-sands-er").val("");
+                        $("#submit-artifacts-sands-atk").val("");
+                        $("#submit-artifacts-sands-def").val("");
+                        $("#submit-artifacts-sands-hp").val("");
+
+                        $("#submit-success-modal").modal("show");
+                        $("#submit-boss-upload").attr("disabled",false);
+                    },
+                    error: function (msg) {
+
+                    }
+                });
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-boss-upload").attr("disabled",false);
+            }
+        });
     }
 
-    $.ajax({
-        type: "POST",
-        url: "artifactsSubmit",
-        data: {
-            "sumArti":sumArti,
-            "flower":sumFlower,
-            "plume":sumPlume,
-            "sands":sumSands,
-            "goblet":sumGoblet,
-            "circlet":sumCirclet,
-            "timeArti":timeArti
-        },
-        timeout: 5000,
-        success: function (msg) {
-            $("#submit-success-modal").modal("show");
-            $("#submit-artifacts-sum").val("1");
-            $("#submit-artifacts-flower").val("");
-            $("#submit-artifacts-plume").val("");
-            $("#submit-artifacts-sands").val("");
-            $("#submit-artifacts-goblet").val("");
-            $("#submit-artifacts-circlet").val("");
-            $("#submit-boss-upload").attr("disabled",false);
-
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-boss-upload").attr("disabled",false);
-        }
-    });
 })
