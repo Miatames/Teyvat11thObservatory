@@ -77,34 +77,40 @@ $(document).on("click", "#submit-ctm-upload", function () {
     let ctmA = Number($("#submit-ctm-a").val());
     let ctmB = Number($("#submit-ctm-b").val());
     let ctmC = Number($("#submit-ctm-c").val());
+    let sumCTMB = ctmA+ctmB+ctmC;
     let timeCTM = getTime();
 
-    $.ajax({
-        type: "POST",
-        url: "ctmSubmit",
-        data: {
-            "sumCTM":sumCTM,
-            "ctmL":ctmL,
-            "ctmA":ctmA,
-            "ctmB":ctmB,
-            "ctmC":ctmC,
-            "timeCTM":timeCTM
-        },
-        timeout: 50000,
-        success: function (msg) {
-            $("#submit-success-modal").modal("show");
-            $("#submit-ctm-sum").val("1");
-            $("#submit-ctm-level").val("4");
-            $("#submit-ctm-a").val("");
-            $("#submit-ctm-b").val("");
-            $("#submit-ctm-c").val("");
-            $("#submit-ctm-upload").attr("disabled",false);
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-ctm-upload").attr("disabled",false);
-        }
-    });
+    if (sumCTMB==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "ctmSubmit",
+            data: {
+                "sumCTM":sumCTM,
+                "ctmL":ctmL,
+                "ctmA":ctmA,
+                "ctmB":ctmB,
+                "ctmC":ctmC,
+                "timeCTM":timeCTM
+            },
+            timeout: 50000,
+            success: function (msg) {
+                $("#submit-success-modal").modal("show");
+                $("#submit-ctm-sum").val("1");
+                $("#submit-ctm-level").val("4");
+                $("#submit-ctm-a").val("");
+                $("#submit-ctm-b").val("");
+                $("#submit-ctm-c").val("");
+                $("#submit-ctm-upload").attr("disabled",false);
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-ctm-upload").attr("disabled",false);
+            }
+        });
+    }
 })
 $(document).on("click", "#submit-exp-upload", function () {
     $("#submit-exp-upload").attr("disabled",true);
@@ -113,34 +119,40 @@ $(document).on("click", "#submit-exp-upload", function () {
     let expA = Number($("#submit-exp-hero").val());
     let expB = Number($("#submit-exp-adventurer").val());
     let expC = Number($("#submit-exp-wanderer").val());
+    let sumBORB = expA+expB+expC;
     let timeBOR = getTime();
 
-    $.ajax({
-        type: "POST",
-        url: "expSubmit",
-        data: {
-            "sumBOR":sumBOR,
-            "expA":expA,
-            "expB":expB,
-            "expC":expC,
-            "worldL":worldL,
-            "timeBOR":timeBOR
-        },
-        timeout: 50000,
-        success: function (msg) {
-            $("#submit-success-modal").modal("show");
-            $("#submit-exp-sum").val("1");
-            $("#submit-exp-worldlevel").val("8");
-            $("#submit-exp-hero").val("");
-            $("#submit-exp-adventurer").val("");
-            $("#submit-exp-wanderer").val("");
-            $("#submit-exp-upload").attr("disabled",false);
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-exp-upload").attr("disabled",false);
-        }
-    });
+    if (sumBORB==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "expSubmit",
+            data: {
+                "sumBOR": sumBOR,
+                "expA": expA,
+                "expB": expB,
+                "expC": expC,
+                "worldL": worldL,
+                "timeBOR": timeBOR
+            },
+            timeout: 50000,
+            success: function (msg) {
+                $("#submit-success-modal").modal("show");
+                $("#submit-exp-sum").val("1");
+                $("#submit-exp-worldlevel").val("8");
+                $("#submit-exp-hero").val("");
+                $("#submit-exp-adventurer").val("");
+                $("#submit-exp-wanderer").val("");
+                $("#submit-exp-upload").attr("disabled", false);
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-exp-upload").attr("disabled", false);
+            }
+        });
+    }
 })
 $(document).on("click", "#submit-wam-upload", function () {
     $("#submit-wam-upload").attr("disabled",true);
@@ -150,36 +162,42 @@ $(document).on("click", "#submit-wam-upload", function () {
     let wamB = Number($("#submit-wam-b").val());
     let wamC = Number($("#submit-wam-c").val());
     let wamD = Number($("#submit-wam-d").val());
+    let sumWAMB = wamA+wamB+wamC+wamD;
     let timeWAM = getTime();
 
-    $.ajax({
-        type: "POST",
-        url: "wamSubmit",
-        data: {
-            "sumWAM":sumWAM,
-            "wamL":wamL,
-            "wamA":wamA,
-            "wamB":wamB,
-            "wamC":wamC,
-            "wamD":wamD,
-            "timeWAM":timeWAM
-        },
-        timeout: 50000,
-        success: function (msg) {
-            $("#submit-success-modal").modal("show");
-            $("#submit-wam-sum").val("1");
-            $("#submit-wam-level").val("4");
-            $("#submit-wam-a").val("");
-            $("#submit-wam-b").val("");
-            $("#submit-wam-c").val("");
-            $("#submit-wam-d").val("");
-            $("#submit-wam-upload").attr("disabled",false);
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-wam-upload").attr("disabled",false);
-        }
-    });
+    if (sumWAMB==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "wamSubmit",
+            data: {
+                "sumWAM": sumWAM,
+                "wamL": wamL,
+                "wamA": wamA,
+                "wamB": wamB,
+                "wamC": wamC,
+                "wamD": wamD,
+                "timeWAM": timeWAM
+            },
+            timeout: 50000,
+            success: function (msg) {
+                $("#submit-success-modal").modal("show");
+                $("#submit-wam-sum").val("1");
+                $("#submit-wam-level").val("4");
+                $("#submit-wam-a").val("");
+                $("#submit-wam-b").val("");
+                $("#submit-wam-c").val("");
+                $("#submit-wam-d").val("");
+                $("#submit-wam-upload").attr("disabled", false);
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-wam-upload").attr("disabled", false);
+            }
+        });
+    }
 })
 
 $(document).on("click", "#submit-boss-upload", function () {
@@ -191,38 +209,44 @@ $(document).on("click", "#submit-boss-upload", function () {
     let camB = Number($("#submit-boss-b").val());
     let camC = Number($("#submit-boss-c").val());
     let camD = Number($("#submit-boss-d").val());
+    let sumCAMB = camU+camA+camB+camC+camD;
     let timeCAM = getTime();
 
-    $.ajax({
-        type: "POST",
-        url: "bossSubmit",
-        data: {
-            "sumCAM":sumCAM,
-            "camL":camL,
-            "camU":camU,
-            "camA":camA,
-            "camB":camB,
-            "camC":camC,
-            "camD":camD,
-            "timeCAM":timeCAM
-        },
-        timeout: 50000,
-        success: function (msg) {
-            $("#submit-success-modal").modal("show");
-            $("#submit-boss-sum").val("1");
-            $("#submit-boss-worldlevel").val("8");
-            $("#submit-boss-a").val("");
-            $("#submit-boss-b").val("");
-            $("#submit-boss-c").val("");
-            $("#submit-boss-d").val("");
-            $("#submit-boss-u").val("");
-            $("#submit-boss-upload").attr("disabled",false);
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-boss-upload").attr("disabled",false);
-        }
-    });
+    if (sumCAMB==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "bossSubmit",
+            data: {
+                "sumCAM": sumCAM,
+                "camL": camL,
+                "camU": camU,
+                "camA": camA,
+                "camB": camB,
+                "camC": camC,
+                "camD": camD,
+                "timeCAM": timeCAM
+            },
+            timeout: 50000,
+            success: function (msg) {
+                $("#submit-success-modal").modal("show");
+                $("#submit-boss-sum").val("1");
+                $("#submit-boss-worldlevel").val("8");
+                $("#submit-boss-a").val("");
+                $("#submit-boss-b").val("");
+                $("#submit-boss-c").val("");
+                $("#submit-boss-d").val("");
+                $("#submit-boss-u").val("");
+                $("#submit-boss-upload").attr("disabled", false);
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-boss-upload").attr("disabled", false);
+            }
+        });
+    }
 })
 
 $(document).on("click", "#submit-boss-continue", function () {
@@ -234,43 +258,49 @@ $(document).on("click", "#submit-boss-continue", function () {
     let camB = Number($("#submit-boss-b").val());
     let camC = Number($("#submit-boss-c").val());
     let camD = Number($("#submit-boss-d").val());
+    let sumCAMB = camU+camA+camB+camC+camD;
     let timeCAM = getTime();
 
-    $.ajax({
-        type: "POST",
-        url: "bossSubmit",
-        data: {
-            "sumCAM":sumCAM,
-            "camL":camL,
-            "camU":camU,
-            "camA":camA,
-            "camB":camB,
-            "camC":camC,
-            "camD":camD,
-            "timeCAM":timeCAM
-        },
-        timeout: 50000,
-        success: function (msg) {
-            $("#submit-success-modal-2").modal("show");
-            $("#submit-boss-sum").val("1");
-            $("#submit-boss-worldlevel").val("8");
-            $("#submit-boss-a").val("");
-            $("#submit-boss-b").val("");
-            $("#submit-boss-c").val("");
-            $("#submit-boss-d").val("");
-            $("#submit-boss-u").val("");
-            $("#submit-boss-upload").attr("disabled",false);
+    if (sumCAMB==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "bossSubmit",
+            data: {
+                "sumCAM": sumCAM,
+                "camL": camL,
+                "camU": camU,
+                "camA": camA,
+                "camB": camB,
+                "camC": camC,
+                "camD": camD,
+                "timeCAM": timeCAM
+            },
+            timeout: 50000,
+            success: function (msg) {
+                $("#submit-success-modal-2").modal("show");
+                $("#submit-boss-sum").val("1");
+                $("#submit-boss-worldlevel").val("8");
+                $("#submit-boss-a").val("");
+                $("#submit-boss-b").val("");
+                $("#submit-boss-c").val("");
+                $("#submit-boss-d").val("");
+                $("#submit-boss-u").val("");
+                $("#submit-boss-upload").attr("disabled", false);
 
-            $("#submit-div-boss").removeClass("active show");
-            $("#submit-tab-boss").removeClass("active");
-            $("#submit-tab-artifacts").addClass("active");
-            $("#submit-div-artifacts").tab("show");
-        },
-        error: function (msg) {
-            $("#submit-fail-modal").modal("show");
-            $("#submit-boss-upload").attr("disabled",false);
-        }
-    });
+                $("#submit-div-boss").removeClass("active show");
+                $("#submit-tab-boss").removeClass("active");
+                $("#submit-tab-artifacts").addClass("active");
+                $("#submit-div-artifacts").tab("show");
+            },
+            error: function (msg) {
+                $("#submit-fail-modal").modal("show");
+                $("#submit-boss-upload").attr("disabled", false);
+            }
+        });
+    }
 })
 
 $(document).on("click", "#submit-artifacts-upload", function () {
