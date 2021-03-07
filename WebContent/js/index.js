@@ -281,6 +281,7 @@ $(document).on("click", "#submit-artifacts-upload", function () {
     let sumSands = Number($("#submit-artifacts-sands").val());
     let sumGoblet = Number($("#submit-artifacts-goblet").val());
     let sumCirclet = Number($("#submit-artifacts-circlet").val());
+    let sumArtiAll = sumFlower+sumPlume+sumSands+sumGoblet+sumCirclet;
 
     let emSands = Number($("#submit-artifacts-sands-em").val());
     let erSands = Number($("#submit-artifacts-sands-er").val());
@@ -289,23 +290,32 @@ $(document).on("click", "#submit-artifacts-upload", function () {
     let hpSands = Number($("#submit-artifacts-sands-hp").val());
     let sumSandsB = emSands+erSands+atkSands+defSands+hpSands;
 
-    let elemGoblet=Number($("#submit-artifacts-goblet-elem").val());
-    let physGoblet=Number($("#submit-artifacts-goblet-phys").val());
-    let atkGoblet=Number($("#submit-artifacts-goblet-atk").val());
-    let defGoblet=Number($("#submit-artifacts-goblet-def").val());
-    let hpGoblet=Number($("#submit-artifacts-goblet-hp").val());
-    let emGoblet=Number($("#submit-artifacts-goblet-em").val());
+    let elemGoblet = Number($("#submit-artifacts-goblet-elem").val());
+    let physGoblet = Number($("#submit-artifacts-goblet-phys").val());
+    let atkGoblet = Number($("#submit-artifacts-goblet-atk").val());
+    let defGoblet = Number($("#submit-artifacts-goblet-def").val());
+    let hpGoblet = Number($("#submit-artifacts-goblet-hp").val());
+    let emGoblet = Number($("#submit-artifacts-goblet-em").val());
     let sumGobletB = elemGoblet+physGoblet+atkGoblet+defGoblet+hpGoblet+emGoblet;
 
+    let cRateCirclet = Number($("#submit-artifacts-circlet-crate").val());
+    let cDmgCirclet = Number($("#submit-artifacts-circlet-cdmg").val());
+    let atkCirclet = Number($("#submit-artifacts-circlet-atk").val());
+    let defCirclet = Number($("#submit-artifacts-circlet-def").val());
+    let hpCirclet = Number($("#submit-artifacts-circlet-hp").val());
+    let healCirclet = Number($("#submit-artifacts-circlet-heal").val());
+    let emCirclet = Number($("#submit-artifacts-circlet-em").val());
+    let sumCircletB = cRateCirclet+cDmgCirclet+atkCirclet+defCirclet+hpCirclet+healCirclet+emCirclet;
 
     let timeArti = getTime();
 
-    if (sumSandsB != sumSands || sumGobletB != sumGoblet){
+    if (sumSandsB != sumSands || sumGobletB != sumGoblet || sumCircletB!=sumCirclet){
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
-    }
-
-    if (sumSandsB == sumSands && sumGobletB == sumGoblet) {
+    }else if (sumArtiAll==0){
+        $("#submit-fail-modal-2").modal("show");
+        $("#submit-boss-upload").attr("disabled", false);
+    }else {
         let artiAllSubmitFun=$.ajax({
             type: "POST",
             url: "artifactsSubmit",
@@ -347,8 +357,23 @@ $(document).on("click", "#submit-artifacts-upload", function () {
             },
             timeout: 50000
         })
+        let circletSubmitFun=$.ajax({
+            type: "POST",
+            url: "circletSubmit",
+            data: {
+                "cRateCirclet": cRateCirclet,
+                "cDmgCirclet": cDmgCirclet,
+                "atkCirclet": atkCirclet,
+                "defCirclet": defCirclet,
+                "hpCirclet": hpCirclet,
+                "healCirclet": healCirclet,
+                "emCirclet": emCirclet,
+                "timeCirclet": timeArti
+            },
+            timeout: 50000
+        })
 
-        $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun).then(
+        $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun, circletSubmitFun).then(
             function () {
                 //成功回调，所有请求正确返回时调用
                 $("#submit-success-modal").modal("show");
@@ -371,6 +396,14 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                 $("#submit-artifacts-goblet-def").val("");
                 $("#submit-artifacts-goblet-hp").val("");
                 $("#submit-artifacts-goblet-em").val("");
+
+                $("#submit-artifacts-circlet-crate").val("");
+                $("#submit-artifacts-circlet-cdmg").val("");
+                $("#submit-artifacts-circlet-atk").val("");
+                $("#submit-artifacts-circlet-def").val("");
+                $("#submit-artifacts-circlet-hp").val("");
+                $("#submit-artifacts-circlet-heal").val("");
+                $("#submit-artifacts-circlet-em").val("");
 
                 $("#submit-success-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);

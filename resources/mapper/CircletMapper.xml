@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.CircletDao">
+
+    <resultMap id="CircletMapper" type="com.genshintool.pojo.CircletPojo">
+        <id property="timeCirclet" column="timeCirclet"></id>
+        <result property="cRateCirclet" column="cRateCirclet"></result>
+        <result property="cDmgCirclet" column="cDmgCirclet"></result>
+        <result property="atkCirclet" column="atkCirclet"></result>
+        <result property="defCirclet" column="defCirclet"></result>
+        <result property="hpCirclet" column="hpCirclet"></result>
+        <result property="healCirclet" column="healCirclet"></result>
+        <result property="emCirclet" column="emCirclet"></result>
+    </resultMap>
+
+    <select id="doCircletSubmitDao" resultType="circletpojo">
+        insert into CIRCLET(CRATECIRCLET,CDMGCIRCLET,ATKCIRCLET,DEFCIRCLET,HPCIRCLET,HEALCIRCLET,EMCIRCLET,TIMECIRCLET)
+        values(#{cRateCirclet},#{cDmgCirclet},#{atkCirclet},#{defCirclet},#{hpCirclet},#{healCirclet},#{emCirclet},#{timeCirclet})
+    </select>
+
+</mapper>
