@@ -50,21 +50,21 @@ $(document).ready(function(){
     $("#submit-artifacts-sands").on("input propertychange",function () {
         if($("#submit-artifacts-sands").val()>0){
             $("#submit-artifacts-sands-card").removeClass("d-none");
-        }else if($("#submit-artifacts-sands").val()==0){
+        }else {
             $("#submit-artifacts-sands-card").addClass("d-none");
         }
     });
     $("#submit-artifacts-goblet").on("input propertychange",function () {
         if($("#submit-artifacts-goblet").val()>0){
             $("#submit-artifacts-goblet-card").removeClass("d-none");
-        }else if($("#submit-artifacts-goblet").val()==0){
+        }else {
             $("#submit-artifacts-goblet-card").addClass("d-none");
         }
     });
     $("#submit-artifacts-circlet").on("input propertychange",function () {
         if($("#submit-artifacts-circlet").val()>0){
             $("#submit-artifacts-circlet-card").removeClass("d-none");
-        }else if($("#submit-artifacts-circlet").val()==0){
+        }else {
             $("#submit-artifacts-circlet-card").addClass("d-none");
         }
     });
@@ -406,7 +406,6 @@ $(document).on("click", "#submit-artifacts-upload", function () {
         $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun, circletSubmitFun).then(
             function () {
                 //成功回调，所有请求正确返回时调用
-                $("#submit-success-modal").modal("show");
                 $("#submit-artifacts-sum").val("1");
                 $("#submit-artifacts-flower").val("");
                 $("#submit-artifacts-plume").val("");
@@ -434,6 +433,16 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                 $("#submit-artifacts-circlet-hp").val("");
                 $("#submit-artifacts-circlet-heal").val("");
                 $("#submit-artifacts-circlet-em").val("");
+
+                if ($("#submit-artifacts-sands-card").hasClass("d-none")==false){
+                    $("#submit-artifacts-sands-card").addClass("d-none");
+                }
+                if ($("#submit-artifacts-goblet-card").hasClass("d-none")==false){
+                    $("#submit-artifacts-goblet-card").addClass("d-none");
+                }
+                if ($("#submit-artifacts-circlet-card").hasClass("d-none")==false){
+                    $("#submit-artifacts-circlet-card").addClass("d-none");
+                }
 
                 $("#submit-success-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);
