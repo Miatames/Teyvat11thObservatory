@@ -98,7 +98,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
             "ctmC":ctmC,
             "timeCTM":timeCTM
         },
-        timeout: 5000,
+        timeout: 50000,
         success: function (msg) {
             $("#submit-success-modal").modal("show");
             $("#submit-ctm-sum").val("1");
@@ -142,7 +142,7 @@ $(document).on("click", "#submit-exp-upload", function () {
             "worldL":worldL,
             "timeBOR":timeBOR
         },
-        timeout: 5000,
+        timeout: 50000,
         success: function (msg) {
             $("#submit-success-modal").modal("show");
             $("#submit-exp-sum").val("1");
@@ -191,7 +191,7 @@ $(document).on("click", "#submit-wam-upload", function () {
             "wamD":wamD,
             "timeWAM":timeWAM
         },
-        timeout: 5000,
+        timeout: 50000,
         success: function (msg) {
             $("#submit-success-modal").modal("show");
             $("#submit-wam-sum").val("1");
@@ -248,7 +248,7 @@ $(document).on("click", "#submit-boss-upload", function () {
             "camD":camD,
             "timeCAM":timeCAM
         },
-        timeout: 5000,
+        timeout: 50000,
         success: function (msg) {
             $("#submit-success-modal").modal("show");
             $("#submit-boss-sum").val("1");
@@ -306,7 +306,7 @@ $(document).on("click", "#submit-boss-continue", function () {
             "camD":camD,
             "timeCAM":timeCAM
         },
-        timeout: 5000,
+        timeout: 50000,
         success: function (msg) {
             $("#submit-success-modal-2").modal("show");
             $("#submit-boss-sum").val("1");
@@ -344,8 +344,15 @@ $(document).on("click", "#submit-artifacts-upload", function () {
     let atkSands = $("#submit-artifacts-sands-atk").val();
     let defSands = $("#submit-artifacts-sands-def").val();
     let hpSands = $("#submit-artifacts-sands-hp").val();
-    let sumSandsB = emSands+erSands+atkSands+defSands+hpSands;
+    let sumSandsB = Number(emSands)+Number(erSands)+Number(atkSands)+Number(defSands)+Number(hpSands);
 
+    let elemGoblet=$("#submit-artifacts-goblet-elem").val();
+    let physGoblet=$("#submit-artifacts-goblet-phys").val();
+    let atkGoblet=$("#submit-artifacts-goblet-atk").val();
+    let defGoblet=$("#submit-artifacts-goblet-def").val();
+    let hpGoblet=$("#submit-artifacts-goblet-hp").val();
+    let emGoblet=$("#submit-artifacts-goblet-em").val();
+    let sumGobletB = Number(elemGoblet)+Number(physGoblet)+Number(atkGoblet)+Number(defGoblet)+Number(hpGoblet)+Number(emGoblet);
 
     let timeArti = getTime();
     if (!sumArti){      sumArti=0;      }
@@ -362,65 +369,65 @@ $(document).on("click", "#submit-artifacts-upload", function () {
     if (!hpSands){      hpSands=0;      }
 
 
-    if (sumSandsB!=sumSands){
+    if (sumSandsB != sumSands || sumGobletB != sumGoblet){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled",false);
-    }else{
-        $.ajax({
+        $("#submit-boss-upload").attr("disabled", false);
+    }
+
+    if (sumSandsB == sumSands && sumGobletB == sumGoblet) {
+        let artiAllSubmitFun=$.ajax({
             type: "POST",
             url: "artifactsSubmit",
             data: {
-                "sumArti":sumArti,
-                "flower":sumFlower,
-                "plume":sumPlume,
-                "sands":sumSands,
-                "goblet":sumGoblet,
-                "circlet":sumCirclet,
-                "timeArti":timeArti
+                "sumArti": sumArti,
+                "flower": sumFlower,
+                "plume": sumPlume,
+                "sands": sumSands,
+                "goblet": sumGoblet,
+                "circlet": sumCirclet,
+                "timeArti": timeArti
             },
-            timeout: 5000,
-            success: function (msg) {
-
-                $.ajax({
-                    type: "POST",
-                    url: "sandsSubmit",
-                    data: {
-                        "emSands":emSands,
-                        "erSands":erSands,
-                        "atkSands":atkSands,
-                        "defSands":defSands,
-                        "hpSands":hpSands,
-                        "timeSands":timeArti
-                    },
-                    timeout: 5000,
-                    success: function (msg) {
-                        $("#submit-success-modal").modal("show");
-                        $("#submit-artifacts-sum").val("1");
-                        $("#submit-artifacts-flower").val("");
-                        $("#submit-artifacts-plume").val("");
-                        $("#submit-artifacts-sands").val("");
-                        $("#submit-artifacts-goblet").val("");
-                        $("#submit-artifacts-circlet").val("");
-
-                        $("#submit-artifacts-sands-em").val("");
-                        $("#submit-artifacts-sands-er").val("");
-                        $("#submit-artifacts-sands-atk").val("");
-                        $("#submit-artifacts-sands-def").val("");
-                        $("#submit-artifacts-sands-hp").val("");
-
-                        $("#submit-success-modal").modal("show");
-                        $("#submit-boss-upload").attr("disabled",false);
-                    },
-                    error: function (msg) {
-
-                    }
-                });
+            timeout: 50000
+        })
+        let sandsSubmitFun=$.ajax({
+            type: "POST",
+            url: "sandsSubmit",
+            data: {
+                "emSands": emSands,
+                "erSands": erSands,
+                "atkSands": atkSands,
+                "defSands": defSands,
+                "hpSands": hpSands,
+                "timeSands": timeArti
             },
-            error: function (msg) {
+            timeout: 50000
+        })
+
+        $.when(artiAllSubmitFun, sandsSubmitFun).then(
+            function () {
+                //成功回调，所有请求正确返回时调用
+                $("#submit-success-modal").modal("show");
+                $("#submit-artifacts-sum").val("1");
+                $("#submit-artifacts-flower").val("");
+                $("#submit-artifacts-plume").val("");
+                $("#submit-artifacts-sands").val("");
+                $("#submit-artifacts-goblet").val("");
+                $("#submit-artifacts-circlet").val("");
+
+                $("#submit-artifacts-sands-em").val("");
+                $("#submit-artifacts-sands-er").val("");
+                $("#submit-artifacts-sands-atk").val("");
+                $("#submit-artifacts-sands-def").val("");
+                $("#submit-artifacts-sands-hp").val("");
+
+                $("#submit-success-modal").modal("show");
+                $("#submit-boss-upload").attr("disabled", false);
+            },
+            function () {
+                //失败回调，任意一个请求失败时返回
                 $("#submit-fail-modal").modal("show");
-                $("#submit-boss-upload").attr("disabled",false);
+                $("#submit-boss-upload").attr("disabled", false);
             }
-        });
+        )
     }
-
 })
