@@ -16,7 +16,7 @@ public class GobletController {
 
     @ResponseBody
     @RequestMapping(value = "/gobletSubmit",method = RequestMethod.POST)
-    public Msg artifactsSubmit(GobletPojo gobletPojo){
+    public Msg gobletSubmit(GobletPojo gobletPojo){
         gobletService.doGobletSubmit(gobletPojo);
         return Msg.success();
     }
