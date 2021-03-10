@@ -83,9 +83,9 @@ $(document).on("click", "#submit-ctm-upload", function () {
 
     if (sumCTMB==0){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-ctm-upload").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-ctm-upload").html("提交中...");
         $.ajax({
             type: "POST",
             url: "ctmSubmit",
@@ -99,7 +99,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-ctm-upload").html("提交");
                 $("#submit-success-modal").modal("show");
                 $("#submit-ctm-sum").val("1");
                 $("#submit-ctm-level").val("4");
@@ -109,7 +109,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
                 $("#submit-ctm-upload").attr("disabled",false);
             },
             error: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-ctm-upload").html("提交");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-ctm-upload").attr("disabled",false);
             }
@@ -118,6 +118,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
 })
 $(document).on("click", "#submit-exp-upload", function () {
     $("#submit-exp-upload").attr("disabled",true);
+
     let sumBOR = Number($("#submit-exp-sum").val());
     let worldL = Number($("#submit-exp-worldlevel").val());
     let expA = Number($("#submit-exp-hero").val());
@@ -128,9 +129,9 @@ $(document).on("click", "#submit-exp-upload", function () {
 
     if (sumBORB==0){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-exp-upload").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-exp-upload").html("提交中...");
         $.ajax({
             type: "POST",
             url: "expSubmit",
@@ -144,7 +145,7 @@ $(document).on("click", "#submit-exp-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-exp-upload").html("提交");
                 $("#submit-success-modal").modal("show");
                 $("#submit-exp-sum").val("1");
                 $("#submit-exp-worldlevel").val("8");
@@ -154,7 +155,7 @@ $(document).on("click", "#submit-exp-upload", function () {
                 $("#submit-exp-upload").attr("disabled", false);
             },
             error: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-exp-upload").html("提交");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-exp-upload").attr("disabled", false);
             }
@@ -174,9 +175,9 @@ $(document).on("click", "#submit-wam-upload", function () {
 
     if (sumWAMB==0){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-wam-upload").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-wam-upload").html("提交中...");
         $.ajax({
             type: "POST",
             url: "wamSubmit",
@@ -191,7 +192,7 @@ $(document).on("click", "#submit-wam-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-wam-upload").html("提交");
                 $("#submit-success-modal").modal("show");
                 $("#submit-wam-sum").val("1");
                 $("#submit-wam-level").val("4");
@@ -202,7 +203,7 @@ $(document).on("click", "#submit-wam-upload", function () {
                 $("#submit-wam-upload").attr("disabled", false);
             },
             error: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-wam-upload").html("提交");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-wam-upload").attr("disabled", false);
             }
@@ -226,7 +227,7 @@ $(document).on("click", "#submit-boss-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-boss-upload").html("提交中...");
         $.ajax({
             type: "POST",
             url: "bossSubmit",
@@ -242,7 +243,7 @@ $(document).on("click", "#submit-boss-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-boss-upload").html("提交");
                 $("#submit-success-modal").modal("show");
                 $("#submit-boss-sum").val("1");
                 $("#submit-boss-worldlevel").val("8");
@@ -254,7 +255,7 @@ $(document).on("click", "#submit-boss-upload", function () {
                 $("#submit-boss-upload").attr("disabled", false);
             },
             error: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-boss-upload").html("提交");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);
             }
@@ -263,7 +264,7 @@ $(document).on("click", "#submit-boss-upload", function () {
 })
 
 $(document).on("click", "#submit-boss-continue", function () {
-    $("#submit-boss-upload").attr("disabled",true);
+    $("#submit-boss-continue").attr("disabled",true);
     let sumCAM = Number($("#submit-boss-sum").val());
     let camL = Number($("#submit-boss-worldlevel").val());
     let camU = Number($("#submit-boss-u").val());
@@ -276,9 +277,9 @@ $(document).on("click", "#submit-boss-continue", function () {
 
     if (sumCAMB==0){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-boss-continue").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-boss-continue").html("提交中...");
         $.ajax({
             type: "POST",
             url: "bossSubmit",
@@ -294,7 +295,7 @@ $(document).on("click", "#submit-boss-continue", function () {
             },
             timeout: 50000,
             success: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-boss-continue").html("继续输入圣遗物");
                 $("#submit-success-modal-2").modal("show");
                 $("#submit-boss-sum").val("1");
                 $("#submit-boss-worldlevel").val("8");
@@ -303,7 +304,7 @@ $(document).on("click", "#submit-boss-continue", function () {
                 $("#submit-boss-c").val("");
                 $("#submit-boss-d").val("");
                 $("#submit-boss-u").val("");
-                $("#submit-boss-upload").attr("disabled", false);
+                $("#submit-boss-continue").attr("disabled", false);
 
                 $("#submit-div-boss").removeClass("active show");
                 $("#submit-tab-boss").removeClass("active");
@@ -311,16 +312,16 @@ $(document).on("click", "#submit-boss-continue", function () {
                 $("#submit-div-artifacts").tab("show");
             },
             error: function (msg) {
-                $("#submit-modal").modal("hide");
+                $("#submit-boss-continue").html("继续输入圣遗物");
                 $("#submit-fail-modal").modal("show");
-                $("#submit-boss-upload").attr("disabled", false);
+                $("#submit-boss-continue").attr("disabled", false);
             }
         });
     }
 })
 
 $(document).on("click", "#submit-artifacts-upload", function () {
-    $("#submit-artifacts-continue").attr("disabled",true);
+    $("#submit-artifacts-upload").attr("disabled",true);
     let sumArti = Number($("#submit-artifacts-sum").val());
     let sumFlower = Number($("#submit-artifacts-flower").val());
     let sumPlume = Number($("#submit-artifacts-plume").val());
@@ -357,12 +358,12 @@ $(document).on("click", "#submit-artifacts-upload", function () {
 
     if (sumSandsB != sumSands || sumGobletB != sumGoblet || sumCircletB!=sumCirclet){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-artifacts-upload").attr("disabled", false);
     }else if (sumArtiAll==0){
         $("#submit-fail-modal-2").modal("show");
-        $("#submit-boss-upload").attr("disabled", false);
+        $("#submit-artifacts-upload").attr("disabled", false);
     }else {
-        $("#submit-modal").modal("show");
+        $("#submit-artifacts-upload").html("提交中...");
         let artiAllSubmitFun=$.ajax({
             type: "POST",
             url: "artifactsSubmit",
@@ -422,7 +423,6 @@ $(document).on("click", "#submit-artifacts-upload", function () {
 
         $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun, circletSubmitFun).then(
             function () {
-                $("#submit-modal").modal("hide");
                 //成功回调，所有请求正确返回时调用
                 $("#submit-artifacts-sum").val("1");
                 $("#submit-artifacts-flower").val("");
@@ -462,14 +462,15 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                     $("#submit-artifacts-circlet-card").addClass("d-none");
                 }
 
+                $("#submit-artifacts-upload").html("提交");
                 $("#submit-success-modal").modal("show");
-                $("#submit-boss-upload").attr("disabled", false);
+                $("#submit-artifacts-upload").attr("disabled", false);
             },
             function () {
-                $("#submit-modal").modal("hide");
+                $("#submit-artifacts-upload").html("提交");
                 //失败回调，任意一个请求失败时返回
                 $("#submit-fail-modal").modal("show");
-                $("#submit-boss-upload").attr("disabled", false);
+                $("#submit-artifacts-upload").attr("disabled", false);
             }
         )
     }
