@@ -72,6 +72,7 @@ $(document).ready(function(){
 });
 $(document).on("click", "#submit-ctm-upload", function () {
     $("#submit-ctm-upload").attr("disabled",true);
+
     let sumCTM = Number($("#submit-ctm-sum").val());
     let ctmL = Number($("#submit-ctm-level").val());
     let ctmA = Number($("#submit-ctm-a").val());
@@ -84,6 +85,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         $.ajax({
             type: "POST",
             url: "ctmSubmit",
@@ -97,6 +99,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-success-modal").modal("show");
                 $("#submit-ctm-sum").val("1");
                 $("#submit-ctm-level").val("4");
@@ -106,6 +109,7 @@ $(document).on("click", "#submit-ctm-upload", function () {
                 $("#submit-ctm-upload").attr("disabled",false);
             },
             error: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-ctm-upload").attr("disabled",false);
             }
@@ -126,6 +130,7 @@ $(document).on("click", "#submit-exp-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         $.ajax({
             type: "POST",
             url: "expSubmit",
@@ -139,6 +144,7 @@ $(document).on("click", "#submit-exp-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-success-modal").modal("show");
                 $("#submit-exp-sum").val("1");
                 $("#submit-exp-worldlevel").val("8");
@@ -148,6 +154,7 @@ $(document).on("click", "#submit-exp-upload", function () {
                 $("#submit-exp-upload").attr("disabled", false);
             },
             error: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-exp-upload").attr("disabled", false);
             }
@@ -169,6 +176,7 @@ $(document).on("click", "#submit-wam-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         $.ajax({
             type: "POST",
             url: "wamSubmit",
@@ -183,6 +191,7 @@ $(document).on("click", "#submit-wam-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-success-modal").modal("show");
                 $("#submit-wam-sum").val("1");
                 $("#submit-wam-level").val("4");
@@ -193,6 +202,7 @@ $(document).on("click", "#submit-wam-upload", function () {
                 $("#submit-wam-upload").attr("disabled", false);
             },
             error: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-wam-upload").attr("disabled", false);
             }
@@ -216,6 +226,7 @@ $(document).on("click", "#submit-boss-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         $.ajax({
             type: "POST",
             url: "bossSubmit",
@@ -231,6 +242,7 @@ $(document).on("click", "#submit-boss-upload", function () {
             },
             timeout: 50000,
             success: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-success-modal").modal("show");
                 $("#submit-boss-sum").val("1");
                 $("#submit-boss-worldlevel").val("8");
@@ -242,6 +254,7 @@ $(document).on("click", "#submit-boss-upload", function () {
                 $("#submit-boss-upload").attr("disabled", false);
             },
             error: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);
             }
@@ -265,6 +278,7 @@ $(document).on("click", "#submit-boss-continue", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         $.ajax({
             type: "POST",
             url: "bossSubmit",
@@ -280,6 +294,7 @@ $(document).on("click", "#submit-boss-continue", function () {
             },
             timeout: 50000,
             success: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-success-modal-2").modal("show");
                 $("#submit-boss-sum").val("1");
                 $("#submit-boss-worldlevel").val("8");
@@ -296,6 +311,7 @@ $(document).on("click", "#submit-boss-continue", function () {
                 $("#submit-div-artifacts").tab("show");
             },
             error: function (msg) {
+                $("#submit-modal").modal("hide");
                 $("#submit-fail-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);
             }
@@ -346,6 +362,7 @@ $(document).on("click", "#submit-artifacts-upload", function () {
         $("#submit-fail-modal-2").modal("show");
         $("#submit-boss-upload").attr("disabled", false);
     }else {
+        $("#submit-modal").modal("show");
         let artiAllSubmitFun=$.ajax({
             type: "POST",
             url: "artifactsSubmit",
@@ -405,6 +422,7 @@ $(document).on("click", "#submit-artifacts-upload", function () {
 
         $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun, circletSubmitFun).then(
             function () {
+                $("#submit-modal").modal("hide");
                 //成功回调，所有请求正确返回时调用
                 $("#submit-artifacts-sum").val("1");
                 $("#submit-artifacts-flower").val("");
@@ -448,6 +466,7 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                 $("#submit-boss-upload").attr("disabled", false);
             },
             function () {
+                $("#submit-modal").modal("hide");
                 //失败回调，任意一个请求失败时返回
                 $("#submit-fail-modal").modal("show");
                 $("#submit-boss-upload").attr("disabled", false);
