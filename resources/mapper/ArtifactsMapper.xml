@@ -7,17 +7,38 @@
 
     <resultMap id="ArtifactsMapper" type="com.genshintool.pojo.ArtifactsPojo">
         <id property="sumArti" column="sumArti"></id>
+        <result property="timeArti" column="timeArti"></result>
         <result property="flower" column="flower"></result>
         <result property="plume" column="plume"></result>
         <result property="sands" column="sands"></result>
         <result property="goblet" column="goblet"></result>
         <result property="circlet" column="circlet"></result>
-        <result property="timeArti" column="timeArti"></result>
+
+        <result property="emSands" column="emSands"></result>
+        <result property="erSands" column="erSands"></result>
+        <result property="atkSands" column="atkSands"></result>
+        <result property="defSands" column="defSands"></result>
+        <result property="hpSands" column="hpSands"></result>
+
+        <result property="elemGoblet" column="elemGoblet"></result>
+        <result property="physGoblet" column="physGoblet"></result>
+        <result property="atkGoblet" column="atkGoblet"></result>
+        <result property="defGoblet" column="defGoblet"></result>
+        <result property="hpGoblet" column="hpGoblet"></result>
+        <result property="emGoblet" column="emGoblet"></result>
+
+        <result property="cRateCirclet" column="cRateCirclet"></result>
+        <result property="cDmgCirclet" column="cDmgCirclet"></result>
+        <result property="atkCirclet" column="atkCirclet"></result>
+        <result property="defCirclet" column="defCirclet"></result>
+        <result property="hpCirclet" column="hpCirclet"></result>
+        <result property="healCirclet" column="healCirclet"></result>
+        <result property="emCirclet" column="emCirclet"></result>
     </resultMap>
 
     <select id="doArtifactsSubmitDao" resultType="artifactspojo">
-        insert into ARTIALL(SUMARTI,FLOWER,PLUME,SANDS,GOBLET,CIRCLET,TIMEARTI)
-        values(#{sumArti},#{flower},#{plume},#{sands},#{goblet},#{circlet},#{timeArti})
+        insert into ARTIALL(SUMARTI,TIMEARTI,FLOWER,PLUME,SANDS,GOBLET,CIRCLET,EMSANDS,ERSANDS,ATKSANDS,DEFSANDS,HPSANDS,ELEMGOBLET,PHYSGOBLET,ATKGOBLET,DEFGOBLET,HPGOBLET,EMGOBLET,CRATECIRCLET,CDMGCIRCLET,ATKCIRCLET,DEFCIRCLET,HPCIRCLET,HEALCIRCLET,EMCIRCLET)
+        values(#{sumArti},#{timeArti},#{flower},#{plume},#{sands},#{goblet},#{circlet},#{emSands},#{erSands},#{atkSands},#{defSands},#{hpSands},#{elemGoblet},#{physGoblet},#{atkGoblet},#{defGoblet},#{hpGoblet},#{emGoblet},#{cRateCirclet},#{cDmgCirclet},#{atkCirclet},#{defCirclet},#{hpCirclet},#{healCirclet},#{emCirclet})
     </select>
 
 </mapper>

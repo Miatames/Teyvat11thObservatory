@@ -44,6 +44,7 @@ $(document).ready(function(){
     });
     $("#testbuttom").click(function () {
         var testtime=getTime();
+        //let testtext=$("#card-MaterialToday .card-title").text();
         alert(testtime);
     });
 
@@ -364,51 +365,28 @@ $(document).on("click", "#submit-artifacts-upload", function () {
         $("#submit-artifacts-upload").attr("disabled", false);
     }else {
         $("#submit-artifacts-upload").html("提交中...");
-        let artiAllSubmitFun=$.ajax({
+        $.ajax({
             type: "POST",
             url: "artifactsSubmit",
             data: {
                 "sumArti": sumArti,
+                "timeArti": timeArti,
                 "flower": sumFlower,
                 "plume": sumPlume,
                 "sands": sumSands,
                 "goblet": sumGoblet,
                 "circlet": sumCirclet,
-                "timeArti": timeArti
-            },
-            timeout: 50000
-        })
-        let sandsSubmitFun=$.ajax({
-            type: "POST",
-            url: "sandsSubmit",
-            data: {
                 "emSands": emSands,
                 "erSands": erSands,
                 "atkSands": atkSands,
                 "defSands": defSands,
                 "hpSands": hpSands,
-                "timeSands": timeArti
-            },
-            timeout: 50000
-        })
-        let gobletSubmitFun=$.ajax({
-            type: "POST",
-            url: "gobletSubmit",
-            data: {
                 "elemGoblet": elemGoblet,
                 "physGoblet": physGoblet,
                 "atkGoblet": atkGoblet,
                 "defGoblet": defGoblet,
                 "hpGoblet": hpGoblet,
                 "emGoblet": emGoblet,
-                "timeGoblet": timeArti
-            },
-            timeout: 50000
-        })
-        let circletSubmitFun=$.ajax({
-            type: "POST",
-            url: "circletSubmit",
-            data: {
                 "cRateCirclet": cRateCirclet,
                 "cDmgCirclet": cDmgCirclet,
                 "atkCirclet": atkCirclet,
@@ -416,13 +394,9 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                 "hpCirclet": hpCirclet,
                 "healCirclet": healCirclet,
                 "emCirclet": emCirclet,
-                "timeCirclet": timeArti
             },
-            timeout: 50000
-        })
-
-        $.when(artiAllSubmitFun, sandsSubmitFun, gobletSubmitFun, circletSubmitFun).then(
-            function () {
+            timeout: 50000,
+            success: function (msg) {
                 //成功回调，所有请求正确返回时调用
                 $("#submit-artifacts-sum").val("1");
                 $("#submit-artifacts-flower").val("");
@@ -466,12 +440,12 @@ $(document).on("click", "#submit-artifacts-upload", function () {
                 $("#submit-success-modal").modal("show");
                 $("#submit-artifacts-upload").attr("disabled", false);
             },
-            function () {
+            error: function (msg) {
                 $("#submit-artifacts-upload").html("提交");
                 //失败回调，任意一个请求失败时返回
                 $("#submit-fail-modal").modal("show");
                 $("#submit-artifacts-upload").attr("disabled", false);
             }
-        )
+        })
     }
 })
