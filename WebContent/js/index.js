@@ -26,9 +26,9 @@ function getMaterialToday() {
     let today = date.getDay();
     let Hours = date.getHours();
 
-    if (Hours<5 && today==0){
+    if (Hours<4 && today==0){
         today = 6;
-    } else if (Hours<5 && today>0){
+    } else if (Hours<4 && today>0){
         today = today-1;
     }
 
