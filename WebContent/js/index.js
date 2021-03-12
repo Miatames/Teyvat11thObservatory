@@ -21,7 +21,44 @@ function getTime() {
     return s_createtime;
 }
 
+function getMaterialToday() {
+    let date = new Date();
+    let today = date.getDay();
+    let Hours = date.getHours();
+
+    if (Hours<5 && today==0){
+        today = 6;
+    } else if (Hours<5 && today>0){
+        today = today-1;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "MaterialTodayList/" + today,
+        timeout: 50000,
+        success: function (msg) {
+            $("#card-material-today").empty();
+            let result = msg.extend.material;
+            $.each(result,function (index, item) {
+                let addMaterialImg = $("<img>").attr("src", item.fileName).addClass("material-img");
+                let addMaterialName = item.materialName;
+
+                $("<li></li>").addClass("list-group-item").append(addMaterialImg).append(addMaterialName)
+                    .appendTo("#card-material-today");
+            });
+
+        },
+        error: function (msg) {
+            $("#card-material-today").empty();
+            $("<li>获取数据失败QAQ</li>").appendTo("#card-material-today");
+        }
+    });
+}
+
+
 $(document).ready(function(){
+    getMaterialToday();
+
     $("#home-tab").click(function(){
         $("#statistic-tab").removeClass("active");
         $("#submit-tab").removeClass("active");

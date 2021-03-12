@@ -24,6 +24,11 @@
             height: 40px;
             width: auto;
         }
+        .material-img{
+            height: 40px;
+            width: auto;
+            padding-right: 20px;
+        }
         th{
             text-align: center;
         }
@@ -78,33 +83,33 @@
             <div class="jumbotron">
                 <h3 class="display-3">开发中</h3>
                 <hr class="my-4">
-                <h5>更新日志：</h5>
-                <p><a href="https://github.com/Miatames/Teyvat11thObservatory">详见Github项目地址</a></p>
-                <p>2021/3/11 last update </p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button" id="testbuttom">测试按钮</a>
                 </p>
             </div>
 
-            <!--
+
             <div class="card-columns">
-                <div class="card" id="card-MaterialToday">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card">
+                    <div class="card-header">
+                        每日轮替材料：
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title that wraps to a new line</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <ul class="list-group list-group-flush" id="card-material-today">
+                            <li class="list-group-item">
+                                加载中...
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card p-3">
-                    <blockquote class="blockquote mb-0 card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">
-                            <small class="text-muted">
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
+                    <div>
+                        <h5>更新日志：</h5>
+                        <p><a href="https://github.com/Miatames/Teyvat11thObservatory">详见Github项目地址</a></p>
+                        <p class="text-right">2021/3/12</p>
+                    </div>
                 </div>
+                <!--
                 <div class="card">
                     <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
@@ -130,9 +135,6 @@
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
-                <div class="card">
-                    <img class="card-img" src="..." alt="Card image">
-                </div>
                 <div class="card p-3 text-right">
                     <blockquote class="blockquote mb-0">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
@@ -149,9 +151,8 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-                </div>
+                </div>-->
             </div>
-            -->
 
         </div>
 
@@ -191,7 +192,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-9 border-left border-right">
                     <div class="tab-content" id="statistic-tab-content">
                         <div class="tab-pane fade show active" id="statistic-div-artifacts" role="tabpanel" aria-labelledby="statistic-tab-artifacts">
                             artifacts
