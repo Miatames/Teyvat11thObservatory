@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.CTMDao">
+
+    <resultMap id="CTMSumMapper" type="com.genshintool.pojo.CTMSumPojo">
+        <id property="sumCTMSum" column="sumCTMSum"></id>
+        <result property="ctmASum" column="ctmASum"></result>
+        <result property="ctmBSum" column="ctmBSum"></result>
+        <result property="ctmCSum" column="ctmCSum"></result>
+    </resultMap>
+
+    <select id="doGetCTMSumListDao" resultType="ctmsumpojo">
+        select sum(SUMCTM) as sumCTMSum,
+                SUM(CTMA) as ctmASum,
+                SUM(CTMB) as ctmBSum,
+                SUM(CTMC) as ctmCSum
+        from CTM where CTML=#{ctmL}
+    </select>
+</mapper>
