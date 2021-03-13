@@ -10,13 +10,13 @@
         <result property="expA" column="expA"></result>
         <result property="expB" column="expB"></result>
         <result property="expC" column="expC"></result>
-        <result property="worldL" column="worldL"></result>
+        <result property="botL" column="botL"></result>
         <result property="timeBOR" column="timeBOR"></result>
     </resultMap>
 
     <select id="doExpSubmitDao" resultType="exppojo">
         insert into BOR(SUMBOR,EXPA,EXPB,EXPC,BOTL,TIMEBOR)
-        values(#{sumBOR},#{expA},#{expB},#{expC},#{worldL},#{timeBOR})
+        values(#{sumBOR},#{expA},#{expB},#{expC},#{botL},#{timeBOR})
     </select>
 
 </mapper>

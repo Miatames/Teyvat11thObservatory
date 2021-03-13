@@ -293,7 +293,7 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <thead>
+                                                    <tbody>
                                                     <tr>
                                                         <th scope="col" class="align-middle">数量</th>
                                                         <td>
@@ -312,7 +312,7 @@
                                                             <input type="number" class="form-control" id="submit-artifacts-circlet" placeholder="" onfocus="this.select()" value="" min="0" max="4">
                                                         </td>
                                                     </tr>
-                                                    </thead>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@
                                                         <th scope="col">百分比生命</th>
                                                     </tr>
                                                     </thead>
-                                                    <thead>
+                                                    <tbody>
                                                     <tr>
                                                         <td>
                                                             <input type="number" class="form-control" id="submit-artifacts-sands-em" placeholder="" onfocus="this.select()" value="" min="0" max="4">
@@ -350,7 +350,7 @@
                                                             <input type="number" class="form-control" id="submit-artifacts-sands-hp" placeholder="" onfocus="this.select()" value="" min="0" max="4">
                                                         </td>
                                                     </tr>
-                                                    </thead>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@
                                                         <th scope="col">元素精通</th>
                                                     </tr>
                                                     </thead>
-                                                    <thead>
+                                                    <tbody>
                                                     <tr>
                                                         <td>
                                                             <input type="number" class="form-control" id="submit-artifacts-goblet-elem" placeholder="" onfocus="this.select()" value="" min="0" max="4">
@@ -393,7 +393,7 @@
                                                         </td>
 
                                                     </tr>
-                                                    </thead>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -463,7 +463,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="submit-exp-worldlevel" class="col-form-label">世界等级</label>
-                                        <input type="number" class="form-control" id="submit-exp-worldlevel" placeholder="" onfocus="this.select()" value="8" min="1" max="8" readonly>
+                                        <input type="number" class="form-control" id="submit-exp-worldlevel" placeholder="" onfocus="this.select()" value="8" min="1" max="8">
                                     </div>
                                     <div class="form-group col-4 col-sm-4 col-md-3" style="padding: 1rem; max-width: 150px;">
                                         <div class="card">
@@ -487,7 +487,7 @@
                                         <div class="card">
                                             <img class="card-img-top" src="./images/exp/wanderer.png" alt="" style="width:100%;">
                                             <div class="card-body">
-                                                <input type="number" class="form-control" id="submit-exp-wanderer" placeholder="" onfocus="this.select()" value="" min="0" max="15" readonly>
+                                                <input type="number" class="form-control" id="submit-exp-wanderer" placeholder="" onfocus="this.select()" value="" min="0" max="15">
                                                 <p class="card-text text-center">流浪者的经验</p>
                                             </div>
                                         </div>
@@ -670,7 +670,97 @@
         </div>
 
         <div class="tab-pane fade" id="calculate-div" role="tabpanel" aria-labelledby="calculate-tab">
-            calculate
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <ul class="nav flex-column nav-pills" id="calculate-tab-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-dark" id="calculate-tab-exp" data-toggle="tab"
+                               href="#calculate-div-exp" role="tab" aria-controls="calculate-div-exp" aria-selected="true">
+                                经验书
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="calculate-tab-cam" data-toggle="tab"
+                               href="#calculate-div-cam" role="tab" aria-controls="calculate-div-cam" aria-selected="false">
+                                角色突破材料
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="calculate-tab-ctm" data-toggle="tab"
+                               href="#calculate-div-ctm" role="tab" aria-controls="calculate-div-ctm" aria-selected="false">
+                                角色天赋素材
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="calculate-tab-wam" data-toggle="tab"
+                               href="#calculate-div-wam" role="tab" aria-controls="calculate-div-wam" aria-selected="false">
+                                武器突破素材
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-9 border-left border-right">
+                    <div class="tab-content" id="calculate-tab-content">
+                        <div class="tab-pane fade show active" id="calculate-div-exp" role="tabpanel" aria-labelledby="calculate-tab-exp">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    当前经验书掉率（每20体力）
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="align-middle">世界等级</th>
+                                                <th scope="col">
+                                                    <img src="./images/exp/hero.png" class="mx-auto d-block ct-tab-img">
+                                                </th>
+                                                <th scope="col">
+                                                    <img src="./images/exp/adventurer.png" class="mx-auto d-block ct-tab-img">
+                                                </th>
+                                                <th scope="col">
+                                                    <img src="./images/exp/wanderer.png" class="mx-auto d-block ct-tab-img">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" class="align-middle w-25">
+                                                    <select class="form-control" id="calculate-exp-level">
+                                                        <option value="0">0</option>
+                                                        <option value="8">8</option>
+                                                        <option value="7">7</option>
+                                                        <option value="6">6</option>
+                                                        <option value="5">5</option>
+                                                        <option value="4">4</option>
+                                                        <option value="3">3</option>
+                                                        <option value="2">2</option>
+                                                        <option value="1">1</option>
+                                                    </select>
+                                                </td>
+                                                <td id="calculate-exp-A" align="center" class="align-middle"></td>
+                                                <td id="calculate-exp-B" align="center" class="align-middle"></td>
+                                                <td id="calculate-exp-C" align="center" class="align-middle"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="calculate-div-cam" role="tabpanel" aria-labelledby="calculate-tab-cam">
+                            cam
+                        </div>
+                        <div class="tab-pane fade" id="calculate-div-ctm" role="tabpanel" aria-labelledby="calculate-tab-ctm">
+                            ctm
+                        </div>
+                        <div class="tab-pane fade" id="calculate-div-wam" role="tabpanel" aria-labelledby="calculate-tab-wam">
+                            wam
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 

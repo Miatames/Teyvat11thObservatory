@@ -21,7 +21,7 @@ function getTime() {
     return s_createtime;
 }
 
-function getMaterialToday() {
+function GetMaterialToday() {
     let date = new Date();
     let today = date.getDay();
     let Hours = date.getHours();
@@ -57,7 +57,7 @@ function getMaterialToday() {
 
 
 $(document).ready(function(){
-    getMaterialToday();
+    GetMaterialToday();
 
     $("#home-tab").click(function(){
         $("#statistic-tab").removeClass("active");
@@ -105,6 +105,10 @@ $(document).ready(function(){
         }else {
             $("#submit-artifacts-circlet-card").addClass("d-none");
         }
+    });
+
+    $("#calculate-exp-level").on("input propertychange",function () {
+        LoadCalculateExp();
     });
 
 });
@@ -158,7 +162,7 @@ $(document).on("click", "#submit-exp-upload", function () {
     $("#submit-exp-upload").attr("disabled",true);
 
     let sumBOR = Number($("#submit-exp-sum").val());
-    let worldL = Number($("#submit-exp-worldlevel").val());
+    let botL = Number($("#submit-exp-worldlevel").val());
     let expA = Number($("#submit-exp-hero").val());
     let expB = Number($("#submit-exp-adventurer").val());
     let expC = Number($("#submit-exp-wanderer").val());
@@ -178,7 +182,7 @@ $(document).on("click", "#submit-exp-upload", function () {
                 "expA": expA,
                 "expB": expB,
                 "expC": expC,
-                "worldL": worldL,
+                "botL": botL,
                 "timeBOR": timeBOR
             },
             timeout: 50000,
@@ -486,3 +490,51 @@ $(document).on("click", "#submit-artifacts-upload", function () {
         })
     }
 })
+
+
+function LoadCalculateExp() {
+    let sumBORSum = 0;
+    let expASum = 0;
+    let expBSum = 0;
+    let expCSum = 0;
+    let expACal = 0;
+    let expBCal = 0;
+    let expCCal = 0;
+    let botL = $("#calculate-exp-level").val();
+    if (botL==0) {
+        $("#calculate-exp-A").html("");
+        $("#calculate-exp-B").html("");
+        $("#calculate-exp-C").html("");
+    } else {
+        $("#calculate-exp-A").html("加载中");
+        $("#calculate-exp-B").html("加载中");
+        $("#calculate-exp-C").html("加载中");
+        $.ajax({
+            type: "POST",
+            url: "expSumList/" + botL,
+            timeout: 50000,
+            success: function (result) {
+                let data = result.extend.exp[0];
+                if (data) {
+                    sumBORSum = data.sumBORSum;
+                    expASum = data.expASum;
+                    expBSum = data.expBSum;
+                    expCSum = data.expCSum;
+
+                    expACal = expASum/sumBORSum;
+                    expBCal = expBSum/sumBORSum;
+                    expCCal = expCSum/sumBORSum;
+                }
+
+                $("#calculate-exp-A").html(expACal.toFixed(2));
+                $("#calculate-exp-B").html(expBCal.toFixed(2));
+                $("#calculate-exp-C").html(expCCal.toFixed(2));
+            },
+            error: function (msg) {
+                $("#calculate-exp-A").html("无数据");
+                $("#calculate-exp-B").html("无数据");
+                $("#calculate-exp-C").html("无数据");
+            }
+        });
+    }
+}

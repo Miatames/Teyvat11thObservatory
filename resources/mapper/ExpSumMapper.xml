@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genshintool.dao.ExpDao">
+
+    <resultMap id="ExpSumMapper" type="com.genshintool.pojo.ExpSumPojo">
+        <id property="sumBORSum" column="sumBORSum"></id>
+        <result property="expASum" column="expASum"></result>
+        <result property="expBSum" column="expBSum"></result>
+        <result property="expCSum" column="expCSum"></result>
+    </resultMap>
+
+    <select id="doGetExpSumListDao" resultType="expsumpojo">
+        select SUM(SUMBOR) as sumBORSum,
+               SUM(EXPA) as expASum,
+               SUM(EXPB) as expBSum,
+               SUM(EXPC) as expCSum
+        from BOR
+        where BOTL=#{worldL}
+    </select>
+
+</mapper>

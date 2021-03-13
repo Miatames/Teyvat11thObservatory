@@ -5,7 +5,7 @@ public class ExpPojo {
     private int expA;
     private int expB;
     private int expC;
-    private int worldL;
+    private int botL;
     private String timeBOR;
 
     public int getSumBOR() {
@@ -40,12 +40,12 @@ public class ExpPojo {
         this.expC = expC;
     }
 
-    public int getWorldL() {
-        return worldL;
+    public int getBotL() {
+        return botL;
     }
 
-    public void setWorldL(int worldL) {
-        this.worldL = worldL;
+    public void setBotL(int botL) {
+        this.botL = botL;
     }
 
     public String getTimeBOR() {
@@ -56,12 +56,12 @@ public class ExpPojo {
         this.timeBOR = timeBOR;
     }
 
-    public ExpPojo(int sumBOR, int expA, int expB, int expC, int worldL, String timeBOR) {
+    public ExpPojo(int sumBOR, int expA, int expB, int expC, int botL, String timeBOR) {
         this.sumBOR = sumBOR;
         this.expA = expA;
         this.expB = expB;
         this.expC = expC;
-        this.worldL = worldL;
+        this.botL = botL;
         this.timeBOR = timeBOR;
     }
 
@@ -75,7 +75,7 @@ public class ExpPojo {
                 ", expA=" + expA +
                 ", expB=" + expB +
                 ", expC=" + expC +
-                ", worldL=" + worldL +
+                ", botL=" + botL +
                 ", timeBOR='" + timeBOR + '\'' +
                 '}';
     }
