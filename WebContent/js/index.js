@@ -50,7 +50,7 @@ function GetMaterialToday() {
         },
         error: function (msg) {
             $("#card-material-today").empty();
-            $("<li>获取数据失败QAQ</li>").appendTo("#card-material-today");
+            $("<li>获取数据失败QAQ</li>").addClass("list-group-item").appendTo("#card-material-today");
         }
     });
 }
@@ -107,8 +107,12 @@ $(document).ready(function(){
         }
     });
 
-    $("#calculate-exp-level").on("input propertychange",function () {
-        LoadCalculateExp();
+    // $("#calculate-exp-level").on("input propertychange",function () {
+    //     LoadExpSum();
+    // });
+
+    $("#calculate-ctm-level").on("input propertychange",function () {
+        LoadCTMSum();
     });
 
 });
@@ -492,7 +496,7 @@ $(document).on("click", "#submit-artifacts-upload", function () {
 })
 
 
-function LoadCalculateExp() {
+function LoadExpSum() {
     let sumBORSum = 0;
     let expASum = 0;
     let expBSum = 0;
@@ -506,9 +510,9 @@ function LoadCalculateExp() {
         $("#calculate-exp-B").html("");
         $("#calculate-exp-C").html("");
     } else {
-        $("#calculate-exp-A").html("加载中");
-        $("#calculate-exp-B").html("加载中");
-        $("#calculate-exp-C").html("加载中");
+        $("#calculate-exp-A").html(".");
+        $("#calculate-exp-B").html(".");
+        $("#calculate-exp-C").html(".");
         $.ajax({
             type: "POST",
             url: "expSumList/" + botL,
@@ -538,3 +542,93 @@ function LoadCalculateExp() {
         });
     }
 }
+
+function LoadCTMSum() {
+    let sumCTMSum = 0;
+    let ctmASum = 0;
+    let ctmBSum = 0;
+    let ctmCSum = 0;
+    let ctmACal = 0;
+    let ctmBCal = 0;
+    let ctmCCal = 0;
+    let ctmL = $("#calculate-ctm-level").val();
+    if (ctmL==0) {
+        $("#calculate-ctm-A").html("");
+        $("#calculate-ctm-B").html("");
+        $("#calculate-ctm-C").html("");
+    } else {
+        $("#calculate-ctm-A").html(".");
+        $("#calculate-ctm-B").html(".");
+        $("#calculate-ctm-C").html(".");
+        $.ajax({
+            type: "POST",
+            url: "ctmSumList/" + ctmL,
+            timeout: 50000,
+            success: function (result) {
+                let data = result.extend.ctm[0];
+                if (data) {
+                    sumCTMSum = data.sumCTMSum;
+                    ctmASum = data.ctmASum;
+                    ctmBSum = data.ctmBSum;
+                    ctmCSum = data.ctmCSum;
+
+                    ctmACal = ctmASum/sumCTMSum;
+                    ctmBCal = ctmBSum/sumCTMSum;
+                    ctmCCal = ctmCSum/sumCTMSum;
+                }
+
+                $("#calculate-ctm-A").html(ctmACal.toFixed(2));
+                $("#calculate-ctm-B").html(ctmBCal.toFixed(2));
+                $("#calculate-ctm-C").html(ctmCCal.toFixed(2));
+            },
+            error: function (msg) {
+                $("#calculate-ctm-A").html("无数据");
+                $("#calculate-ctm-B").html("无数据");
+                $("#calculate-ctm-C").html("无数据");
+            }
+        });
+    }
+}
+
+$(document).on("click", "#calculate-ctm-cal", function () {
+    let ctmACal = Number($("#calculate-ctm-A").text());
+    let ctmBCal = Number($("#calculate-ctm-B").text());
+    let ctmCCal = Number($("#calculate-ctm-C").text());
+
+    let ctmACalReq = Number($("#calculate-ctm-A-req").val());
+    let ctmBCalReq = Number($("#calculate-ctm-B-req").val());
+    let ctmCCalReq = Number($("#calculate-ctm-C-req").val());
+
+    let calSum=1;
+
+    if (ctmACal+ctmBCal+ctmCCal==0) {
+        $("#calculate-fail-modal").modal("show");
+    } else if (ctmACalReq+ctmBCalReq+ctmCCalReq==0) {
+        $("#calculate-fail-modal-2").modal("show");
+    } else if (ctmACalReq>300 || ctmBCalReq>300 || ctmCCalReq>300){
+        $("#calculate-fail-modal-2").modal("show");
+    } else {
+        while (1) {
+            let calCRem = Math.floor(ctmCCal*calSum-ctmCCalReq);
+            let calBRem = Math.floor(
+                ctmBCal*calSum+Math.floor(calCRem/3)-ctmBCalReq
+            );
+            let calARem = Math.floor(
+                ctmACal*calSum+Math.floor(calBRem/3)-ctmACalReq
+            );
+
+            if (calCRem>=0 && calBRem>=0 && calARem>=0) {
+                $("#calculate-ctm-sum-req").val(calSum);
+                break;
+            }
+            calSum++;
+        }
+    }
+})
+$(document).on("click", "#calculate-ctm-cal-clean", function () {
+    $("#calculate-ctm-A-req").val("");
+    $("#calculate-ctm-B-req").val("");
+    $("#calculate-ctm-C-req").val("");
+    $("#calculate-ctm-sum-req").val("");
+
+})

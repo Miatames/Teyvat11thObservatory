@@ -21,8 +21,8 @@
             padding: 10px;
         }
         .ct-tab-img{
-            height: 40px;
-            width: auto;
+            width: 40px;
+            height: auto;
         }
         .material-img{
             height: 40px;
@@ -106,7 +106,7 @@
                     <div>
                         <h5>更新日志：</h5>
                         <p><a href="https://github.com/Miatames/Teyvat11thObservatory">详见Github项目地址</a></p>
-                        <p class="text-right">2021/3/12</p>
+                        <p class="text-right">2021/3/14</p>
                     </div>
                 </div>
                 <!--
@@ -674,13 +674,7 @@
                 <div class="col-12 col-md-3">
                     <ul class="nav flex-column nav-pills" id="calculate-tab-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active text-dark" id="calculate-tab-exp" data-toggle="tab"
-                               href="#calculate-div-exp" role="tab" aria-controls="calculate-div-exp" aria-selected="true">
-                                经验书
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="calculate-tab-cam" data-toggle="tab"
+                            <a class="nav-link active text-dark" id="calculate-tab-cam" data-toggle="tab"
                                href="#calculate-div-cam" role="tab" aria-controls="calculate-div-cam" aria-selected="false">
                                 角色突破材料
                             </a>
@@ -701,59 +695,94 @@
                 </div>
                 <div class="col-12 col-md-9 border-left border-right">
                     <div class="tab-content" id="calculate-tab-content">
-                        <div class="tab-pane fade show active" id="calculate-div-exp" role="tabpanel" aria-labelledby="calculate-tab-exp">
+                        <div class="tab-pane fade show active" id="calculate-div-cam" role="tabpanel" aria-labelledby="calculate-tab-cam">
+                            cam
+                        </div>
+                        <div class="tab-pane fade" id="calculate-div-ctm" role="tabpanel" aria-labelledby="calculate-tab-ctm">
 
                             <div class="card">
                                 <div class="card-header">
-                                    当前经验书掉率（每20体力）
+                                    当前天赋材料掉率（每20体力）
                                 </div>
                                 <div class="card-body table-responsive">
                                     <table class="table table-borderless">
                                         <thead>
-                                            <tr>
-                                                <th scope="col" class="align-middle">世界等级</th>
-                                                <th scope="col">
-                                                    <img src="./images/exp/hero.png" class="mx-auto d-block ct-tab-img">
-                                                </th>
-                                                <th scope="col">
-                                                    <img src="./images/exp/adventurer.png" class="mx-auto d-block ct-tab-img">
-                                                </th>
-                                                <th scope="col">
-                                                    <img src="./images/exp/wanderer.png" class="mx-auto d-block ct-tab-img">
-                                                </th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="col" class="align-middle">秘境等级</th>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence1.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence2.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence3.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td scope="col" class="align-middle w-25">
-                                                    <select class="form-control" id="calculate-exp-level">
-                                                        <option value="0">0</option>
-                                                        <option value="8">8</option>
-                                                        <option value="7">7</option>
-                                                        <option value="6">6</option>
-                                                        <option value="5">5</option>
-                                                        <option value="4">4</option>
-                                                        <option value="3">3</option>
-                                                        <option value="2">2</option>
-                                                        <option value="1">1</option>
-                                                    </select>
-                                                </td>
-                                                <td id="calculate-exp-A" align="center" class="align-middle"></td>
-                                                <td id="calculate-exp-B" align="center" class="align-middle"></td>
-                                                <td id="calculate-exp-C" align="center" class="align-middle"></td>
-                                            </tr>
+                                        <tr>
+                                            <td scope="col" class="align-middle w-25">
+                                                <select class="form-control" id="calculate-ctm-level">
+                                                    <option value="0">0</option>
+                                                    <option value="4">4</option>
+                                                    <option value="3">3</option>
+                                                    <option value="2">2</option>
+                                                    <option value="1">1</option>
+                                                </select>
+                                            </td>
+                                            <td id="calculate-ctm-A" align="center" class="align-middle"></td>
+                                            <td id="calculate-ctm-B" align="center" class="align-middle"></td>
+                                            <td id="calculate-ctm-C" align="center" class="align-middle"></td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <div class="card" style="margin-top: 10px">
+                                <div class="card-header">
+                                    在上面选择秘境等级后，输入所需要的材料数量
+                                    <small class="form-text text-muted">
+                                        *根据网站所统计的掉落数据进行计算，仅供参考，每项上限计算300个
+                                    </small>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence1.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence2.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/ctm/Deligence3.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-ctm-A-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-ctm-B-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-ctm-C-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
 
+                                    <input type="text" class="form-control w-25 float-left" id="calculate-ctm-sum-req" placeholder="所需次数" readonly style="margin: 10px;">
+                                    <button type="button" class="btn btn-primary w-25 float-left" id="calculate-ctm-cal" style="margin: 10px;">计算</button>
+                                    <button type="button" class="btn btn-secondary w-25 float-left" id="calculate-ctm-cal-clean" style="margin: 10px;">清空</button>
 
-                        </div>
-                        <div class="tab-pane fade" id="calculate-div-cam" role="tabpanel" aria-labelledby="calculate-tab-cam">
-                            cam
-                        </div>
-                        <div class="tab-pane fade" id="calculate-div-ctm" role="tabpanel" aria-labelledby="calculate-tab-ctm">
-                            ctm
+                                </div>
+                            </div>
+                            <div><p></p></div>
                         </div>
                         <div class="tab-pane fade" id="calculate-div-wam" role="tabpanel" aria-labelledby="calculate-tab-wam">
                             wam
@@ -808,6 +837,32 @@
                 <div class="modal-content bg-warning">
                     <div class="modal-header" style="border-bottom: 0px;">
                         <h5 class="modal-title">提交失败,所填数据不正确</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="calculate-fail-modal" tabindex="-1" role="dialog" aria-labelledby="submit-fail-modal-2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-warning">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <h5 class="modal-title">当前秘境等级无统计概率</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="calculate-fail-modal-2" tabindex="-1" role="dialog" aria-labelledby="submit-fail-modal-2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-warning">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <h5 class="modal-title">计算失败,所填数据不正确或过大</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
