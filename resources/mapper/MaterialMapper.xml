@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genshintool.dao.MaterialDao">
+<mapper namespace="pers.genshintool.dao.MaterialDao">
 
-    <resultMap id="MaterialMap" type="com.genshintool.pojo.MaterialPojo">
+    <resultMap id="MaterialMap" type="pers.genshintool.pojo.MaterialPojo">
         <id property="MaterialDay" column="MaterialDay"></id>
         <result property="MaterialName" column="MaterialName"></result>
         <result property="FileName" column="FileName"></result>

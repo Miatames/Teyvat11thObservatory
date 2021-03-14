@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 <!-- 关闭默认的扫描机制use-default-filters,只扫描Controller -->
-<context:component-scan base-package="com.genshintool" use-default-filters="false">
+<context:component-scan base-package="pers.genshintool" use-default-filters="false">
    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 </context:component-scan>
 

@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genshintool.dao.ArtifactsDao">
+<mapper namespace="pers.genshintool.dao.ArtifactsDao">
 
-    <resultMap id="ArtifactsMapper" type="com.genshintool.pojo.ArtifactsPojo">
+    <resultMap id="ArtifactsMapper" type="pers.genshintool.pojo.ArtifactsPojo">
         <id property="sumArti" column="sumArti"></id>
         <result property="timeArti" column="timeArti"></result>
         <result property="flower" column="flower"></result>

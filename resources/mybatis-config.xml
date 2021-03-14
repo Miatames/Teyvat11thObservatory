@@ -6,7 +6,7 @@
 
 <!-- 别名配置 -->
 <typeAliases>
-  <package name="com.genshintool.pojo"/>
+  <package name="pers.genshintool.pojo"/>
 </typeAliases>
 
 <!-- pageHelper分页插件配置，以拦截器的形式存在 -->

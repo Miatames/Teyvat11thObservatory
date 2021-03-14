@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genshintool.dao.ExpDao">
+<mapper namespace="pers.genshintool.dao.ExpDao">
 
-    <resultMap id="ExpSumMapper" type="com.genshintool.pojo.ExpSumPojo">
+    <resultMap id="ExpSumMapper" type="pers.genshintool.pojo.ExpSumPojo">
         <id property="sumBORSum" column="sumBORSum"></id>
         <result property="expASum" column="expASum"></result>
         <result property="expBSum" column="expBSum"></result>

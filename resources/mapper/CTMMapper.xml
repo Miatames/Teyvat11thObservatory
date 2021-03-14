@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.genshintool.dao.CTMDao">
+<mapper namespace="pers.genshintool.dao.CTMDao">
 
-    <resultMap id="CTMMapper" type="com.genshintool.pojo.CTMPojo">
+    <resultMap id="CTMMapper" type="pers.genshintool.pojo.CTMPojo">
         <id property="sumCTM" column="sumCTM"></id>
         <result property="ctmL" column="ctmL"></result>
         <result property="ctmA" column="ctmA"></result>
