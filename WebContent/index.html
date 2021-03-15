@@ -105,53 +105,12 @@
                 <div class="card p-3">
                     <div>
                         <h5>更新日志：</h5>
-                        <p><a href="https://github.com/Miatames/Teyvat11thObservatory">详见Github项目地址</a></p>
-                        <p class="text-right">2021/3/14</p>
+                        <p><a href="https://github.com/Miatames/Teyvat11thObservatory">Github项目</a></p>
+                        <p>材料计算：武器突破材料 完成</p>
+                        <p class="text-right">2021/3/16</p>
                     </div>
                 </div>
-                <!--
-                <div class="card">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card bg-primary text-white text-center p-3">
-                    <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                        <footer class="blockquote-footer">
-                            <small>
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card p-3 text-right">
-                    <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">
-                            <small class="text-muted">
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>-->
+
             </div>
 
         </div>
@@ -776,6 +735,10 @@
                                         </tbody>
                                     </table>
 
+                                    <div class="form-check" style="margin: 10px;">
+                                        <input type="checkbox" class="form-check-input" id="calculate-ctm-choose" checked="checked">
+                                        <label class="form-check-label" for="calculate-wam-choose">考虑低级材料合成为高级材料</label>
+                                    </div>
                                     <input type="text" class="form-control w-25 float-left" id="calculate-ctm-sum-req" placeholder="所需次数" readonly style="margin: 10px;">
                                     <button type="button" class="btn btn-primary w-25 float-left" id="calculate-ctm-cal" style="margin: 10px;">计算</button>
                                     <button type="button" class="btn btn-secondary w-25 float-left" id="calculate-ctm-cal-clean" style="margin: 10px;">清空</button>
@@ -784,9 +747,111 @@
                             </div>
                             <div><p></p></div>
                         </div>
+
+
                         <div class="tab-pane fade" id="calculate-div-wam" role="tabpanel" aria-labelledby="calculate-tab-wam">
-                            wam
+
+                            <div class="card">
+                                <div class="card-header">
+                                    当前武器突破材料掉率（每20体力）
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="align-middle">秘境等级</th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite1.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite2.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite3.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite4.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td scope="col" class="align-middle w-25">
+                                                <select class="form-control" id="calculate-wam-level">
+                                                    <option value="0">0</option>
+                                                    <option value="4">4</option>
+                                                    <option value="3">3</option>
+                                                    <option value="2">2</option>
+                                                    <option value="1">1</option>
+                                                </select>
+                                            </td>
+                                            <td id="calculate-wam-A" align="center" class="align-middle"></td>
+                                            <td id="calculate-wam-B" align="center" class="align-middle"></td>
+                                            <td id="calculate-wam-C" align="center" class="align-middle"></td>
+                                            <td id="calculate-wam-D" align="center" class="align-middle"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card" style="margin-top: 10px">
+                                <div class="card-header">
+                                    在上面选择秘境等级后，输入所需要的材料数量
+                                    <small class="form-text text-muted">
+                                        *根据网站所统计的掉落数据进行计算，仅供参考，每项上限计算300个
+                                    </small>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite1.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite2.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite3.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                            <th scope="col">
+                                                <img src="./images/wam/Aerosiderite4.png" class="mx-auto d-block ct-tab-img">
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-wam-A-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-wam-B-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-wam-C-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                            <td align="center" class="align-middle">
+                                                <input type="number" class="form-control" id="calculate-wam-D-req" placeholder="" onfocus="this.select()" value="" max="300">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="form-check" style="margin: 10px;">
+                                        <input type="checkbox" class="form-check-input" id="calculate-wam-choose" checked="checked">
+                                        <label class="form-check-label" for="calculate-wam-choose">考虑低级材料合成为高级材料</label>
+                                    </div>
+                                    <input type="text" class="form-control w-25 float-left" id="calculate-wam-sum-req" placeholder="所需次数" readonly style="margin: 10px;">
+                                    <button type="button" class="btn btn-primary w-25 float-left" id="calculate-wam-cal" style="margin: 10px;">计算</button>
+                                    <button type="button" class="btn btn-secondary w-25 float-left" id="calculate-wam-cal-clean" style="margin: 10px;">清空</button>
+
+                                </div>
+                            </div>
+                            <div><p></p></div>
+
                         </div>
+
+
                     </div>
                 </div>
             </div>

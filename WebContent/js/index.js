@@ -21,7 +21,7 @@ function getTime() {
     return s_createtime;
 }
 
-function GetMaterialToday() {
+function getMaterialToday() {
     let date = new Date();
     let today = date.getDay();
     let Hours = date.getHours();
@@ -57,7 +57,7 @@ function GetMaterialToday() {
 
 
 $(document).ready(function(){
-    GetMaterialToday();
+    getMaterialToday();
 
     $("#home-tab").click(function(){
         $("#statistic-tab").removeClass("active");
@@ -112,7 +112,11 @@ $(document).ready(function(){
     // });
 
     $("#calculate-ctm-level").on("input propertychange",function () {
-        LoadCTMSum();
+        loadCTMSum();
+    });
+
+    $("#calculate-wam-level").on("input propertychange",function () {
+        loadWAMSum();
     });
 
 });
@@ -543,7 +547,7 @@ function LoadExpSum() {
     }
 }
 
-function LoadCTMSum() {
+function loadCTMSum() {
     let sumCTMSum = 0;
     let ctmASum = 0;
     let ctmBSum = 0;
@@ -599,7 +603,7 @@ $(document).on("click", "#calculate-ctm-cal", function () {
     let ctmBCalReq = Number($("#calculate-ctm-B-req").val());
     let ctmCCalReq = Number($("#calculate-ctm-C-req").val());
 
-    let calSum=1;
+    let ctmCheckSta = $("#calculate-ctm-choose").prop("checked");
 
     if (ctmACal+ctmBCal+ctmCCal==0) {
         $("#calculate-fail-modal").modal("show");
@@ -608,20 +612,30 @@ $(document).on("click", "#calculate-ctm-cal", function () {
     } else if (ctmACalReq>300 || ctmBCalReq>300 || ctmCCalReq>300){
         $("#calculate-fail-modal-2").modal("show");
     } else {
-        while (1) {
-            let calCRem = Math.floor(ctmCCal*calSum-ctmCCalReq);
-            let calBRem = Math.floor(
-                ctmBCal*calSum+Math.floor(calCRem/3)-ctmBCalReq
-            );
-            let calARem = Math.floor(
-                ctmACal*calSum+Math.floor(calBRem/3)-ctmACalReq
-            );
+        if (ctmCheckSta) {
+            let calSum=1;
+            while (1) {
+                let calCRem = Math.floor(ctmCCal*calSum-ctmCCalReq);
+                let calBRem = Math.floor(
+                    ctmBCal*calSum+Math.floor(calCRem/3)-ctmBCalReq
+                );
+                let calARem = Math.floor(
+                    ctmACal*calSum+Math.floor(calBRem/3)-ctmACalReq
+                );
 
-            if (calCRem>=0 && calBRem>=0 && calARem>=0) {
-                $("#calculate-ctm-sum-req").val(calSum);
-                break;
+                if (calCRem>=0 && calBRem>=0 && calARem>=0) {
+                    $("#calculate-ctm-sum-req").val(calSum);
+                    break;
+                }
+                calSum++;
             }
-            calSum++;
+        } else {
+            let ctmASum = Math.ceil(ctmACalReq/ctmACal);
+            let ctmBSum = Math.ceil(ctmBCalReq/ctmBCal);
+            let ctmCSum = Math.ceil(ctmCCalReq/ctmCCal);
+
+            let calSum = Math.max(ctmASum,ctmBSum,ctmCSum);
+            $("#calculate-ctm-sum-req").val(calSum);
         }
     }
 })
@@ -630,5 +644,117 @@ $(document).on("click", "#calculate-ctm-cal-clean", function () {
     $("#calculate-ctm-B-req").val("");
     $("#calculate-ctm-C-req").val("");
     $("#calculate-ctm-sum-req").val("");
+})
 
+function loadWAMSum() {
+    let sumWAMSum = 0;
+    let wamASum = 0;
+    let wamBSum = 0;
+    let wamCSum = 0;
+    let wamDSum = 0;
+    let wamACal = 0;
+    let wamBCal = 0;
+    let wamCCal = 0;
+    let wamDCal = 0;
+    let wamL = $("#calculate-wam-level").val();
+
+    if (wamL==0) {
+        $("#calculate-wam-A").val("");
+        $("#calculate-wam-B").val("");
+        $("#calculate-wam-C").val("");
+        $("#calculate-wam-D").val("");
+    } else {
+        $("#calculate-wam-A").val(".");
+        $("#calculate-wam-B").val(".");
+        $("#calculate-wam-C").val(".");
+        $("#calculate-wam-D").val(".");
+        $.ajax({
+            type: "POST",
+            url: "wamSumList/" + wamL,
+            timeout: 50000,
+            success: function (result) {
+                let data = result.extend.wam[0];
+                if (data) {
+                    sumWAMSum = data.sumWAMSum;
+                    wamASum = data.wamASum;
+                    wamBSum = data.wamBSum;
+                    wamCSum = data.wamCSum;
+                    wamDSum = data.wamDSum;
+
+                    wamACal = wamASum/sumWAMSum;
+                    wamBCal = wamBSum/sumWAMSum;
+                    wamCCal = wamCSum/sumWAMSum;
+                    wamDCal = wamDSum/sumWAMSum;
+                }
+
+                $("#calculate-wam-A").html(wamACal.toFixed(2));
+                $("#calculate-wam-B").html(wamBCal.toFixed(2));
+                $("#calculate-wam-C").html(wamCCal.toFixed(2));
+                $("#calculate-wam-D").html(wamDCal.toFixed(2));
+            },
+            error: function (msg) {
+                $("#calculate-wam-A").val("无数据");
+                $("#calculate-wam-B").val("无数据");
+                $("#calculate-wam-C").val("无数据");
+                $("#calculate-wam-D").val("无数据");
+            }
+        });
+    }
+}
+$(document).on("click", "#calculate-wam-cal", function () {
+    let wamACal = Number($("#calculate-wam-A").text());
+    let wamBCal = Number($("#calculate-wam-B").text());
+    let wamCCal = Number($("#calculate-wam-C").text());
+    let wamDCal = Number($("#calculate-wam-D").text());
+
+    let wamACalReq = Number($("#calculate-wam-A-req").val());
+    let wamBCalReq = Number($("#calculate-wam-B-req").val());
+    let wamCCalReq = Number($("#calculate-wam-C-req").val());
+    let wamDCalReq = Number($("#calculate-wam-D-req").val());
+
+    let wamCheckSta = $("#calculate-wam-choose").prop("checked");
+
+    if (wamACal+wamBCal+wamCCal+wamDCal==0) {
+        $("#calculate-fail-modal").modal("show");
+    } else if (wamACalReq+wamBCalReq+wamCCalReq+wamDCalReq==0) {
+        $("#calculate-fail-modal-2").modal("show");
+    } else if (wamACalReq>300 || wamBCalReq>300 || wamCCalReq>300 || wamDCalReq>300){
+        $("#calculate-fail-modal-2").modal("show");
+    } else {
+        if (wamCheckSta) {
+            let calSum=1
+            while (1) {
+                let calDRem = Math.floor(wamDCal*calSum-wamDCalReq);
+                let calCRem = Math.floor(
+                    wamCCal*calSum+Math.floor(calDRem/3)-wamCCalReq
+                );
+                let calBRem = Math.floor(
+                    wamBCal*calSum+Math.floor(calCRem/3)-wamBCalReq
+                );
+                let calARem = Math.floor(
+                    wamACal*calSum+Math.floor(calBRem/3)-wamACalReq
+                );
+                if (calDRem && calCRem>=0 && calBRem>=0 && calARem>=0) {
+                    $("#calculate-wam-sum-req").val(calSum);
+                    break;
+                }
+                calSum++;
+            }
+        } else {
+            let wamASum = Math.ceil(wamACalReq/wamACal);
+            let wamBSum = Math.ceil(wamBCalReq/wamBCal);
+            let wamCSum = Math.ceil(wamCCalReq/wamCCal);
+            let wamDSum = Math.ceil(wamDCalReq/wamDCal);
+
+            let calSum = Math.max(wamASum,wamBSum,wamCSum,wamDSum);
+            $("#calculate-wam-sum-req").val(calSum);
+        }
+    }
+})
+$(document).on("click", "#calculate-wam-cal-clean", function () {
+    $("#calculate-wam-A-req").val("");
+    $("#calculate-wam-B-req").val("");
+    $("#calculate-wam-C-req").val("");
+    $("#calculate-wam-D-req").val("");
+    $("#calculate-wam-sum-req").val("");
 })
