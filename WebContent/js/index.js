@@ -734,7 +734,7 @@ $(document).on("click", "#calculate-wam-cal", function () {
                 let calARem = Math.floor(
                     wamACal*calSum+Math.floor(calBRem/3)-wamACalReq
                 );
-                if (calDRem && calCRem>=0 && calBRem>=0 && calARem>=0) {
+                if (calDRem>=0 && calCRem>=0 && calBRem>=0 && calARem>=0) {
                     $("#calculate-wam-sum-req").val(calSum);
                     break;
                 }
