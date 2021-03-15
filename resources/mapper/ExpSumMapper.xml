@@ -18,7 +18,7 @@
                SUM(EXPB) as expBSum,
                SUM(EXPC) as expCSum
         from BOR
-        where BOTL=#{worldL}
+        where BOTL=#{botl}
     </select>
 
 </mapper>

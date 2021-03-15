@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.genshintool.dao.WAMDao">
+
+    <resultMap id="WAMSumMapper" type="pers.genshintool.pojo.WAMSumPojo">
+        <id property="sumWAMSum" column="sumWAMSum"></id>
+        <result property="wamASum" column="wamASum"></result>
+        <result property="wamBSum" column="wamBSum"></result>
+        <result property="wamCSum" column="wamCSum"></result>
+        <result property="wamDSum" column="wamDSum"></result>
+    </resultMap>
+
+    <select id="doGetWAMSumListDao" resultType="wamsumpojo">
+        select SUM(SUMWAM) as sumWAMSum,
+               SUM(WAMA) as wamASum,
+               SUM(WAMB) as wamBSum,
+               SUM(WAMC) as wamCSum,
+               SUM(WAMD) as wamDSum
+        from WAM
+        where WAML=#{wamL}
+    </select>
+
+</mapper>
